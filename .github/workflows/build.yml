@@ -88,17 +88,18 @@ jobs:
         run: |
           ls -la
 
-      - name: Compress Packages
-        run: |
-          cd ~/packages
+      - name: compress Packages
+        working-directory: void-packages/hostdir/binpkgs
+        run:
           ls -la
           tar -czvf ${{ env.PACKAGES_FILE }} *
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
+          working-directory: void-packages/hostdir/binpkgs  
           name: ${{ env.REPO_NAME }}
-          path: ~/packages/${{ env.PACKAGES_FILE }}
+          path: ${{ env.PACKAGES_FILE }}
 
 
       # - name: build hyprutils
