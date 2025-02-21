@@ -19,6 +19,7 @@ jobs:
       REPO_OWNER: "${{ github.repository_owner }}"
       REPO_NAME: "${{ github.event.repository.name }}"
       XBPS_TARGET_ARCH: ${{ matrix.arch }}
+      PACKAGES_FILE: "packages.tar.gz"
       # XBPS_PASSPHRASE: ${{ secrets.SIGN_PASS }}
 
     steps:
@@ -86,6 +87,19 @@ jobs:
         working-directory: void-packages/hostdir/binpkgs/
         run: |
           ls -la
+
+      - name: Compress Packages
+        run: |
+          cd ~/packages
+          ls -la
+          tar -czvf ${{ env.PACKAGES_FILE }} *
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.REPO_NAME }}
+          path: ~/packages/${{ env.PACKAGES_FILE }}
+
 
       # - name: build hyprutils
       #   working-directory: void-packages
