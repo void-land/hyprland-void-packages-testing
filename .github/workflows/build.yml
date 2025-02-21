@@ -95,11 +95,9 @@ jobs:
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
-        with:
-          working-directory: void-packages/hostdir/binpkgs  
+        with:  
           name: ${{ env.REPO_NAME }}
-          path: ${{ env.PACKAGES_FILE }}
-
+          path: void-packages/hostdir/binpkgs/${{ env.PACKAGES_FILE }}
 
       # - name: build hyprutils
       #   working-directory: void-packages
