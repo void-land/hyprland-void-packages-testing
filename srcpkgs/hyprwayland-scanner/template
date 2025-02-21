@@ -11,8 +11,7 @@ configure_args=" --no-warn-unused-cli \
    -DCMAKE_CXX_FLAGS=-stdlib=libc++
 "
 hostmakedepends="clang19 cmake pkgconf"
-hostmakedepends="pkgconf"
-makedepends="pugixml-devel"
+makedepends="libcxx libcxx-devel libcxxabi libcxxabi-devel pugixml-devel"
 short_desc="Hyprland's implementation of wayland-scanner in/for C++"
 maintainer="Makrennel <makrommel@protonmail.ch>"
 license="BSD-3-Clause"
