@@ -2,8 +2,14 @@
 pkgname=hyprlang
 version=0.6.0
 revision=1
-# build_style=cmake
-# configure_args="-DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_CXX_STANDARD=23"
+build_style=cmake
+configure_args=" --no-warn-unused-cli \
+   -DCMAKE_BUILD_TYPE=Release \
+   -DCMAKE_C_COMPILER=clang \
+   -DCMAKE_CXX_COMPILER=clang++ \
+   -DCMAKE_CXX_STANDARD=23 \
+   -DCMAKE_CXX_FLAGS=-stdlib=libc++
+"
 hostmakedepends="clang19 cmake pkgconf"
 makedepends="hyprutils libcxx libcxx-devel libcxxabi libcxxabi-devel"
 short_desc="Official implementation library for the hypr config language"
@@ -14,32 +20,30 @@ changelog="https://github.com/hyprwm/hyprlang/releases"
 distfiles="https://github.com/hyprwm/hyprlang/archive/refs/tags/v${version}.tar.gz"
 checksum=b1a163606402041d92507936fb6dcbc40dd0035b8e8abbf44b0ab59be627b52c
 
-_setup_clang() {
+pre_configure() {
    export CC=clang
    export CXX=clang++
    export BUILD_CC=clang
    export BUILD_CXX=clang++
-   export HOST_CC=clang
-   export HOST_CXX=clang++
 }
 
-do_configure() {
-   _setup_clang
+# do_configure() {
+#    _setup_clang
 
-   cmake --no-warn-unused-cli \
-      -DCMAKE_BUILD_TYPE=Release \
-      -DCMAKE_INSTALL_PREFIX=/usr \
-      -DCMAKE_C_COMPILER=clang \
-      -DCMAKE_CXX_COMPILER=clang++ \
-      -DCMAKE_CXX_STANDARD=23 \
-      -DCMAKE_CXX_FLAGS="-stdlib=libc++" \
-      -S . -B ./build
-}
+#    cmake --no-warn-unused-cli \
+#       -DCMAKE_BUILD_TYPE=Release \
+#       -DCMAKE_INSTALL_PREFIX=/usr \
+#       -DCMAKE_C_COMPILER=clang \
+#       -DCMAKE_CXX_COMPILER=clang++ \
+#       -DCMAKE_CXX_STANDARD=23 \
+#       -DCMAKE_CXX_FLAGS="-stdlib=libc++" \
+#       -S . -B ./build
+# }
 
-do_build() {
-   cmake --build ./build --config Release --target $pkgname
-}
+# do_build() {
+#    cmake --build ./build --config Release --target $pkgname
+# }
 
-do_install() {
-   DESTDIR="$DESTDIR" cmake --install build
-}
+# do_install() {
+#    DESTDIR="$DESTDIR" cmake --install build
+# }
