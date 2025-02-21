@@ -78,6 +78,11 @@ jobs:
 
       # ---------------------------------------------------------------------
 
+      - name: build hyprutils
+        working-directory: void-packages
+        run: |
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprutils
+
       - name: build hyprlang
         working-directory: void-packages
         run: |
