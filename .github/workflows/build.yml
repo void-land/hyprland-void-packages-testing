@@ -90,8 +90,7 @@ jobs:
 
       - name: compress Packages
         working-directory: void-packages/hostdir/binpkgs
-        run:
-          ls -la
+        run: |
           tar -czvf ${{ env.PACKAGES_FILE }} *
 
       - name: Upload artifact
