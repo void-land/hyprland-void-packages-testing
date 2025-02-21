@@ -23,6 +23,4 @@ checksum=822ce38345bc4c1b95966c79ee72ff18d753aa923c83e9aa64e9d82eebf55a38
 pre_configure() {
    export CC=clang
    export CXX=clang++
-   export BUILD_CC=clang
-   export BUILD_CXX=clang++
 }

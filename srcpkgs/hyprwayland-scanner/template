@@ -19,6 +19,11 @@ homepage="https://github.com/hyprwm/hyprwayland-scanner"
 distfiles="https://github.com/hyprwm/hyprwayland-scanner/archive/refs/tags/v${version}.tar.gz"
 checksum=ac73f626019f8d819ff79a5fca06ce4768ce8a3bded6f48c404445f3afaa25ac
 
+pre_configure() {
+	export CC=clang
+	export CXX=clang++
+}
+
 post_install() {
 	vlicense LICENSE
 }

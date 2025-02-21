@@ -64,40 +64,25 @@ jobs:
         run: |
           ./xbps-src -m masterdir-${{ matrix.arch }} -A ${{ matrix.arch }} binary-bootstrap
 
-      # ---------------------------------------------------------------------
+      - name: build packages
+        working-directory: void-packages
+        run: |
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprland-protocols
 
-      # - name: build tomlplusplus
+      # - name: build aquamarine
       #   working-directory: void-packages
       #   run: |
-      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} tomlplusplus
+      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} aquamarine
 
-      # - name: build sdbus-cpp
+      # - name: build hyprutils
       #   working-directory: void-packages
       #   run: |
-      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} sdbus-cpp
+      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprutils
 
-      # ---------------------------------------------------------------------
-
-      - name: build hyprwayland-scanner
-        working-directory: void-packages
-        run: |
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprwayland-scanner
-
-
-      - name: build aquamarine
-        working-directory: void-packages
-        run: |
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} aquamarine
-
-      - name: build hyprutils
-        working-directory: void-packages
-        run: |
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprutils
-
-      - name: build hyprlang
-        working-directory: void-packages
-        run: |
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprlang
+      # - name: build hyprlang
+      #   working-directory: void-packages
+      #   run: |
+      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprlang
 
       - name: show built packages
         working-directory: void-packages/hostdir/binpkgs/
