@@ -1,9 +1,16 @@
 # Template file for 'aquamarine'
 pkgname=aquamarine
-version=0.4.1
+version=0.7.2
 revision=1
 build_style=cmake
-hostmakedepends="cmake pkgconf"
+configure_args=" --no-warn-unused-cli \
+   -DCMAKE_BUILD_TYPE=Release \
+   -DCMAKE_C_COMPILER=clang \
+   -DCMAKE_CXX_COMPILER=clang++ \
+   -DCMAKE_CXX_STANDARD=23 \
+   -DCMAKE_CXX_FLAGS=-stdlib=libc++
+"
+hostmakedepends="clang19 cmake pkgconf"
 makedepends="hyprutils MesaLib-devel hyprwayland-scanner libseat-devel libinput-devel wayland-devel wayland-protocols pixman-devel libdisplay-info-devel hwids"
 short_desc="Aquamarine is a very light linux rendering backend library"
 maintainer="hesam-init <hesam.init@gmail.com>"
@@ -11,4 +18,11 @@ license="LGPL-3.0-only"
 homepage="https://hyprland.org/hyprlang/index.html"
 changelog="https://github.com/hyprwm/aquamarine/releases"
 distfiles="https://github.com/hyprwm/aquamarine/archive/refs/tags/v${version}.tar.gz"
-checksum=efbdd27204522823f58dc38110cf6f696d3e6f0dec02a96d6f0465592b45a979
+checksum=822ce38345bc4c1b95966c79ee72ff18d753aa923c83e9aa64e9d82eebf55a38
+
+pre_configure() {
+   export CC=clang
+   export CXX=clang++
+   export BUILD_CC=clang
+   export BUILD_CXX=clang++
+}

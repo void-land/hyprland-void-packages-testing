@@ -48,12 +48,12 @@ jobs:
           tar xvf xbps-static-latest.x86_64-musl.tar.xz -C /opt/xbps
           rm xbps-static-latest.x86_64-musl.tar.xz
 
-      - name: free space
-        run: |
-          sudo rm -rf /usr/share/dotnet
-          sudo rm -rf /usr/local/lib/android
-          sudo rm -rf /opt/ghc
-          sudo rm -rf /opt/hostedtoolcache/CodeQL
+      # - name: free space
+      #   run: |
+      #     sudo rm -rf /usr/share/dotnet
+      #     sudo rm -rf /usr/local/lib/android
+      #     sudo rm -rf /opt/ghc
+      #     sudo rm -rf /opt/hostedtoolcache/CodeQL
 
       - name: set path
         run: |
@@ -77,6 +77,17 @@ jobs:
       #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} sdbus-cpp
 
       # ---------------------------------------------------------------------
+
+      - name: build hyprwayland-scanner
+        working-directory: void-packages
+        run: |
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprwayland-scanner
+
+
+      - name: build aquamarine
+        working-directory: void-packages
+        run: |
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} aquamarine
 
       - name: build hyprutils
         working-directory: void-packages
