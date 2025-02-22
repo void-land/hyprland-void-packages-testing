@@ -2,7 +2,9 @@
 pkgname=hyprcursor
 version=0.1.11
 revision=1
-hostmakedepends="cmake clang19 pkgconf cairo-devel"
+build_style=cmake
+configure_args=" --no-warn-unused-cli -DCMAKE_BUILD_TYPE=Release"
+hostmakedepends="pkgconf cairo-devel"
 makedepends="hyprlang librsvg-devel libzip-devel tomlplusplus"
 short_desc="Hyprland cursor format, library and utilities"
 maintainer="hesam-init <hesam.init@gmail.com>"
@@ -16,25 +18,17 @@ build_options_default="clang"
 desc_option_clang="Use clang to build"
 
 if [ "$build_option_clang" ]; then
-	export CC=clang
-	export CXX=clang++
+	hostmakedepends+=" clang19"
+	makedepends+=" libcxx libcxx-devel libcxxabi libcxxabi-devel"
 fi
 
-do_configure() {
-	cmake --no-warn-unused-cli \
-		-DCMAKE_BUILD_TYPE=Release \
-		-DCMAKE_INSTALL_PREFIX=/usr \
-		-DCMAKE_C_COMPILER=$CC \
-		-DCMAKE_CXX_COMPILER=$CXX \
-		-S . -B ./build
-}
+pre_configure() {
+	if [ "$build_option_clang" ]; then
+		export CC=clang
+		export CXX=clang++
 
-do_build() {
-	cmake --build ./build --config Release --target $pkgname
-}
-
-do_install() {
-	DESTDIR="$DESTDIR" cmake --install build
+		configure_args+=" -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CXX -DCMAKE_CXX_STANDARD=23 -DCMAKE_CXX_FLAGS=-stdlib=libc++"
+	fi
 }
 
 post_install() {
