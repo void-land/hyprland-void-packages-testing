@@ -67,7 +67,7 @@ jobs:
       - name: build packages
         working-directory: void-packages
         run: |
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprlang
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprgraphics
 
       # - name: build aquamarine
       #   working-directory: void-packages
