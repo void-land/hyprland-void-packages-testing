@@ -3,7 +3,7 @@ pkgname=tomlplusplus
 version=3.4.0
 revision=1
 build_style=meson
-configure_args=" --buildtype=release -Ddevel=true -Db_lto=true -Duse_vendored_libs=true" # set options true for gcc
+configure_args=" --buildtype=release -Ddevel=true -Db_lto=false -Duse_vendored_libs=true" # set options true for gcc
 hostmakedepends="cmake pkgconf lld19"
 short_desc="Header-only TOML config file parser and serializer for C++17"
 maintainer="hesam-init <hesam.init@gmail.com>"
