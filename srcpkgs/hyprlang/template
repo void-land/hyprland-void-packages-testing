@@ -12,20 +12,20 @@ license="LGPL-3.0-only"
 homepage="https://hyprland.org/hyprlang/index.html"
 changelog="https://github.com/hyprwm/hyprlang/releases"
 distfiles="https://github.com/hyprwm/hyprlang/archive/refs/tags/v${version}.tar.gz"
-checksum=b1a163606402041d92507936fb6dcbc40dd0035b8e8abbf44b0ab59be627b52c
-build_options="clang" # enables clang option
+checksum="b1a163606402041d92507936fb6dcbc40dd0035b8e8abbf44b0ab59be627b52c"
+
+build_options="clang"
+build_options_default="clang"
+desc_option_clang="Use clang to build"
 
 pre_configure() {
    if [ "$build_option_clang" ]; then
-      echo "Clang"
       export CC=clang
       export CXX=clang++
 
       hostmakedepends+=" clang19"
       makedepends+=" libcxx libcxx-devel libcxxabi libcxxabi-devel"
       configure_args+=" -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_CXX_STANDARD=23 -DCMAKE_CXX_FLAGS=-stdlib=libc++"
-
-      echo $configure_args
    fi
 }
 
