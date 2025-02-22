@@ -64,6 +64,11 @@ jobs:
         run: |
           ./xbps-src -m masterdir-${{ matrix.arch }} -A ${{ matrix.arch }} binary-bootstrap
 
+      - name: build tomlplusplus
+        working-directory: void-packages
+        run: |
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} tomlplusplus
+
       - name: build packages
         working-directory: void-packages
         run: |
