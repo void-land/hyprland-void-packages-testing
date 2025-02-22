@@ -2,14 +2,31 @@
 pkgname=tomlplusplus
 version=3.4.0
 revision=1
-build_style="meson"
-hostmakedepends="pkgconf cmake"
+build_style=meson
+configure_args="--buildtype=release -Ddevel=true -Db_lto=false"
+hostmakedepends="pkgconf"
 short_desc="Header-only TOML config file parser and serializer for C++17"
 maintainer="hesam-init <hesam.init@gmail.com>"
 license="MIT"
 homepage="https://marzer.github.io/tomlplusplus/"
 distfiles="https://github.com/marzer/${pkgname}/archive/refs/tags/v${version}.tar.gz"
 checksum=8517f65938a4faae9ccf8ebb36631a38c1cadfb5efa85d9a72e15b9e97d25155
+
+build_options="clang"
+build_options_default="clang"
+desc_option_clang="Use clang to build"
+
+if [ "$build_option_clang" ]; then
+	hostmakedepends+=" clang19"
+	# makedepends+=" libcxx libcxx-devel libcxxabi libcxxabi-devel"
+fi
+
+pre_configure() {
+	if [ "$build_option_clang" ]; then
+		export CC=clang
+		export CXX=clang++
+	fi
+}
 
 post_install() {
 	vlicense LICENSE
