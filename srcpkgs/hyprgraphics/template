@@ -5,7 +5,7 @@ revision=1
 build_style=cmake
 configure_args=" --no-warn-unused-cli -DCMAKE_BUILD_TYPE=Release"
 hostmakedepends="cmake pkgconf wayland-devel hyprutils hyprwayland-scanner"
-makedepends="hyprutils pibspng pixman-devel cairo-devel libjpeg-turbo-devel libwebp-devel file-devel libjxl-devel"
+makedepends="hyprutils libspng pixman-devel cairo-devel libjpeg-turbo-devel libwebp-devel file-devel libjxl-devel"
 short_desc="Fast wallpaper utility for wlroots compositors with IPC controls"
 maintainer="hesam-init <hesam.init@gmail.com>"
 license="BSD-3-Clause"
