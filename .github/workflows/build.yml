@@ -67,22 +67,7 @@ jobs:
       - name: build packages
         working-directory: void-packages
         run: |
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprcursor
-
-      # - name: build aquamarine
-      #   working-directory: void-packages
-      #   run: |
-      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} aquamarine
-
-      # - name: build hyprutils
-      #   working-directory: void-packages
-      #   run: |
-      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprutils
-
-      # - name: build hyprlang
-      #   working-directory: void-packages
-      #   run: |
-      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprlang
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} aquamarine
 
       - name: show built packages
         working-directory: void-packages/hostdir/binpkgs/

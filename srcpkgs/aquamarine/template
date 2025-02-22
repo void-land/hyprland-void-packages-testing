@@ -3,24 +3,31 @@ pkgname=aquamarine
 version=0.7.2
 revision=1
 build_style=cmake
-configure_args=" --no-warn-unused-cli \
-   -DCMAKE_BUILD_TYPE=Release \
-   -DCMAKE_C_COMPILER=clang \
-   -DCMAKE_CXX_COMPILER=clang++ \
-   -DCMAKE_CXX_STANDARD=23 \
-   -DCMAKE_CXX_FLAGS=-stdlib=libc++
-"
-hostmakedepends="clang19 cmake pkgconf"
-makedepends="libcxx libcxx-devel libcxxabi libcxxabi-devel hyprutils hyprwayland-scanner MesaLib-devel libseat-devel libinput-devel wayland-devel wayland-protocols pixman-devel libdisplay-info-devel hwids"
+configure_args=" --no-warn-unused-cli -DCMAKE_BUILD_TYPE=Release"
+hostmakedepends="cmake pkgconf"
+makedepends="hyprutils hyprwayland-scanner MesaLib-devel libseat-devel libinput-devel wayland-devel wayland-protocols pixman-devel libdisplay-info-devel hwids"
 short_desc="Aquamarine is a very light linux rendering backend library"
 maintainer="hesam-init <hesam.init@gmail.com>"
 license="LGPL-3.0-only"
 homepage="https://hyprland.org/hyprlang/index.html"
 changelog="https://github.com/hyprwm/aquamarine/releases"
 distfiles="https://github.com/hyprwm/aquamarine/archive/refs/tags/v${version}.tar.gz"
-checksum=822ce38345bc4c1b95966c79ee72ff18d753aa923c83e9aa64e9d82eebf55a38
+checksum="822ce38345bc4c1b95966c79ee72ff18d753aa923c83e9aa64e9d82eebf55a38"
+
+build_options="clang"
+build_options_default="clang"
+desc_option_clang="Use clang to build"
+
+if [ "$build_option_clang" ]; then
+   hostmakedepends+=" clang19"
+   makedepends+=" libcxx libcxx-devel libcxxabi libcxxabi-devel"
+fi
 
 pre_configure() {
-   export CC=clang
-   export CXX=clang++
+   if [ "$build_option_clang" ]; then
+      export CC=clang
+      export CXX=clang++
+
+      configure_args+=" -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CCX -DCMAKE_CXX_STANDARD=23 -DCMAKE_CXX_FLAGS=-stdlib=libc++"
+   fi
 }
