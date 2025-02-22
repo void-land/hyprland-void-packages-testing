@@ -3,8 +3,8 @@ pkgname=tomlplusplus
 version=3.4.0
 revision=1
 build_style=meson
-configure_args=" --buildtype=release -Ddevel=true -Db_lto=true" # options get true for gcc
-hostmakedepends="cmake pkgconf"
+configure_args=" --buildtype=release -Ddevel=true -Db_lto=false" # options get true for gcc
+hostmakedepends="cmake pkgconf lld19"
 short_desc="Header-only TOML config file parser and serializer for C++17"
 maintainer="hesam-init <hesam.init@gmail.com>"
 license="MIT"
@@ -21,6 +21,8 @@ if [ "$build_option_clang" ]; then
 fi
 
 pre_configure() {
+	export CXX_LD=lld
+
 	if [ "$build_option_clang" ]; then
 		export CC=clang
 		export CXX=clang++
