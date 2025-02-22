@@ -3,7 +3,7 @@ pkgname=glaze
 version=4.3.1
 revision=1
 build_style=cmake
-configure_args="-DCMAKE_INSTALL_PREFIX='/usr' -DBUILD_TESTING=OFF -DCMAKE_BUILD_TYPE=Release"
+configure_args="-DBUILD_TESTING=OFF -DCMAKE_BUILD_TYPE=Release"
 makedepends="cmake libsanitizer-devel"
 short_desc="A short description max 72 chars"
 maintainer="hesam-init <hesam.init@gmail.com>"
