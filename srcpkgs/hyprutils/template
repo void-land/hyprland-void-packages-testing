@@ -13,7 +13,7 @@ license="BSD-3-Clause"
 homepage="https://github.com/hyprwm/hyprutils"
 distfiles="https://github.com/hyprwm/hyprutils/archive/refs/tags/v${version}.tar.gz"
 checksum=0ad1d873012568661667cb5b599ddd59b3bea945a0d03c0f2ca3c7f4dff55798
-build_options="" # enables clang option
+build_options="clang" # enables clang option
 
 pre_configure() {
    if [ "$build_option_clang" ]; then
