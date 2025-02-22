@@ -4,7 +4,7 @@ version=3.4.0
 revision=1
 build_style=meson
 configure_args="--buildtype=release -Ddevel=false -Db_lto=false"
-hostmakedepends="pkgconf"
+hostmakedepends="cmake pkgconf"
 short_desc="Header-only TOML config file parser and serializer for C++17"
 maintainer="hesam-init <hesam.init@gmail.com>"
 license="MIT"
