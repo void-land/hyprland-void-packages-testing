@@ -3,7 +3,7 @@ pkgname=tomlplusplus
 version=3.4.0
 revision=1
 build_style=meson
-configure_args=" --buildtype=release -Ddevel=false -Db_lto=false" # set options true for gcc
+configure_args=" --buildtype=release -Ddevel=false -Db_lto=true -Duse_vendored_libs=true" # set options true for gcc
 hostmakedepends="cmake pkgconf lld19"
 short_desc="Header-only TOML config file parser and serializer for C++17"
 maintainer="hesam-init <hesam.init@gmail.com>"
@@ -13,7 +13,7 @@ distfiles="https://github.com/marzer/${pkgname}/archive/refs/tags/v${version}.ta
 checksum="8517f65938a4faae9ccf8ebb36631a38c1cadfb5efa85d9a72e15b9e97d25155"
 
 build_options="clang"
-build_options_default="clang"
+build_options_default=""
 desc_option_clang="Use clang to build"
 
 if [ "$build_option_clang" ]; then
