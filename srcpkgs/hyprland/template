@@ -1,7 +1,7 @@
 # Template file for 'hyprland'
 pkgname=hyprland
-version=0.44.1
-revision=1
+version=0.47.0
+revision=2
 build_style=cmake
 configure_args=" --no-warn-unused-cli \
 	-DCMAKE_BUILD_TYPE:STRING=Release \
@@ -9,7 +9,8 @@ configure_args=" --no-warn-unused-cli \
 	-DNO_SYSTEMD:STRING=true \
 	-G Ninja
 "
-hstmkdeps="
+configure_args=" --no-warn-unused-cli -DCMAKE_BUILD_TYPE=Release -DNO_SYSTEMD:STRING=true"
+hostmakedepends="
 	cmake
 	cpio
 	gcc
@@ -21,9 +22,10 @@ hstmkdeps="
 	ninja
 	pkgconf
 	wayland-devel
+	hyprgraphics
 "
-hostmakedepends=$hstmkdeps
 makedepends="
+	glaze
 	aquamarine
 	cairo-devel
 	hwids
@@ -48,6 +50,8 @@ makedepends="
 	xcb-util-renderutil-devel
 	xcb-util-wm-devel
 	xorg-server-xwayland
+	udis86-devel
+	re2-devel
 "
 short_desc="Dynamic tiling Wayland compositor that doesn't sacrifice on its looks"
 maintainer="hesam-init <hesam.init@gmail.com>"
@@ -55,13 +59,31 @@ license="BSD-3-Clause"
 homepage="https://hyprland.org/"
 changelog="https://github.com/hyprwm/Hyprland/releases"
 distfiles="https://github.com/hyprwm/Hyprland/releases/download/v${version}/source-v${version}.tar.gz"
-checksum=a901b9ce5dac48a2b92f287d902c5dc33a05e9946fd082c43142f205246dfc63
+checksum="45176957b935c0bcb16fd9ec0944c35911d26f042bd8e64642aa41152ddea4e8"
+
+build_options="clang"
+build_options_default="clang"
+desc_option_clang="Use clang to build"
+
+if [ "$build_option_clang" ]; then
+	hostmakedepends+=" clang19"
+	makedepends+=" libcxx libcxx-devel libcxxabi libcxxabi-devel"
+fi
 
 if [ "$XBPS_TARGET_LIBC" = "musl" ]; then
 	configure_args+=" -DCMAKE_CXX_FLAGS=\"-lexecinfo\""
 	makedepends+=" libexecinfo-devel"
 	depends+=" libexecinfo"
 fi
+
+pre_configure() {
+	if [ "$build_option_clang" ]; then
+		export CC=clang
+		export CXX=clang++
+
+		configure_args+=" -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_CXX_STANDARD=23 -DCMAKE_CXX_FLAGS=-stdlib=libc++"
+	fi
+}
 
 post_install() {
 	# license

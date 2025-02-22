@@ -1,0 +1,31 @@
+# Template file for 'glaze'
+pkgname=glaze
+version=4.3.1
+revision=1
+build_style=cmake
+configure_args="-DCMAKE_INSTALL_PREFIX='/usr' -DBUILD_TESTING=OFF -DCMAKE_BUILD_TYPE=Release"
+makedepends="cmake libsanitizer-devel"
+short_desc="A short description max 72 chars"
+maintainer="hesam-init <hesam.init@gmail.com>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/stephenberry/glaze"
+distfiles="https://github.com/stephenberry/glaze/archive/refs/tags/v${version}.tar.gz"
+checksum=934b16d0a00dfc2b06bc2920a6444b8a6a34edb4f0fe872f8ad7a044518a37e3
+
+build_options="clang"
+build_options_default="clang"
+desc_option_clang="Use clang to build"
+
+if [ "$build_option_clang" ]; then
+   hostmakedepends+=" clang19"
+   makedepends+=" libcxx libcxx-devel libcxxabi libcxxabi-devel"
+fi
+
+pre_configure() {
+   if [ "$build_option_clang" ]; then
+      export CC=clang
+      export CXX=clang++
+
+      configure_args+=" -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CCX -DCMAKE_CXX_STANDARD=23 -DCMAKE_CXX_FLAGS=-stdlib=libc++"
+   fi
+}
