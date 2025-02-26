@@ -2,7 +2,7 @@
 pkgname=libtoml++
 version=3.4.0
 revision=1
-build_style=cmake
+build_style=meson
 hostmakedepends="pkg-config cmake lld19"
 short_desc="Header-only TOML config file parser and serializer"
 maintainer="Elvyria"
@@ -25,13 +25,13 @@ pre_configure() {
 	if [ "$build_option_clang" ]; then
 		export CC=clang
 		export CXX=clang++
-		# export CXXFLAGS=" -Wno-deprecated-literal-operator \
-		#     -Wno-switch-default \
-		#     -Wno-unsafe-buffer-usage \
-		#     -Wno-error=switch-default \
-		#     -Wno-error=unsafe-buffer-usage"
+		export CXXFLAGS=" -Wno-deprecated-literal-operator \
+          -Wno-switch-default \
+          -Wno-unsafe-buffer-usage \
+          -Wno-error=switch-default \
+          -Wno-error=unsafe-buffer-usage"
 
-		# configure_args+=" --buildtype=release -Ddevel=true -Db_lto=false -Dcpp_std=c++23 -Dcpp_stdlib=libc++"
+		configure_args+=" --buildtype=release -Ddevel=true -Db_lto=false -Dcpp_std=c++23 -Dcpp_stdlib=libc++"
 	fi
 }
 
