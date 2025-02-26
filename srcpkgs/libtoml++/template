@@ -12,7 +12,7 @@ distfiles="https://github.com/marzer/tomlplusplus/archive/refs/tags/v${version}.
 checksum=8517f65938a4faae9ccf8ebb36631a38c1cadfb5efa85d9a72e15b9e97d25155
 
 build_options="clang"
-build_options_default="clang"
+build_options_default=""
 desc_option_clang="Use clang to build"
 
 if [ "$build_option_clang" ]; then
@@ -25,13 +25,14 @@ pre_configure() {
 	if [ "$build_option_clang" ]; then
 		export CC=clang
 		export CXX=clang++
-		export CXXFLAGS="-Wno-deprecated-literal-operator \
+		export CXXFLAGS="-stdlib=libc++ -Wno-deprecated-literal-operator \
           -Wno-switch-default \
           -Wno-unsafe-buffer-usage \
           -Wno-error=switch-default \
           -Wno-error=unsafe-buffer-usage"
+		export LDFLAGS="-stdlib=libc++"
 
-		configure_args+=" --buildtype=release -Ddevel=true -Db_lto=false"
+		configure_args+=" --buildtype=release -Ddevel=true -Db_lto=false -Dcpp_std=c++23"
 	fi
 }
 
