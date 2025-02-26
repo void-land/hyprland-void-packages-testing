@@ -5,7 +5,7 @@ revision=1
 build_style=cmake
 configure_args=" --no-warn-unused-cli -DCMAKE_BUILD_TYPE=Release"
 hostmakedepends="pkg-config"
-makedepends="hyprlang cairo-devel librsvg-devel libzip-devel tomlplusplus"
+makedepends="cairo-devel pango-devel harfbuzz-devel hyprlang-devel librsvg-devel libzip-devel libtoml++-devel"
 short_desc="Hyprland cursor format, library and utilities"
 maintainer="hesam-init <hesam.init@gmail.com>"
 license="BSD-3-Clause"
@@ -33,4 +33,14 @@ pre_configure() {
 
 post_install() {
 	vlicense LICENSE
+}
+
+hyprcursor-devel_package() {
+	depends="hyprcursor-${version}_${revision}"
+	short_desc+=" - development files"
+	pkg_install() {
+		vmove usr/include
+		vmove usr/lib/*.so
+		vmove usr/lib/pkgconfig
+	}
 }
