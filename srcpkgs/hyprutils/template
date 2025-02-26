@@ -3,9 +3,9 @@ pkgname=hyprutils
 version=0.5.1
 revision=1
 build_style=cmake
-hostmakedepends="pkgconf"
+hostmakedepends="pkg-config"
 configure_args=" --no-warn-unused-cli -DCMAKE_BUILD_TYPE=Release"
-hostmakedepends="cmake pkgconf"
+hostmakedepends="cmake pkg-config"
 makedepends="pixman-devel"
 short_desc="A small C++ library used across the Hypr* ecosystem"
 maintainer="hesam-init <hesam.init@gmail.com>"
@@ -34,4 +34,14 @@ pre_configure() {
 
 post_install() {
    vlicense LICENSE
+}
+
+hyprutils-devel_package() {
+   depends="hyprutils-${version}_${revision}"
+   short_desc+=" - development files"
+   pkg_install() {
+      vmove usr/include
+      vmove usr/lib/*.so
+      vmove usr/lib/pkgconfig
+   }
 }

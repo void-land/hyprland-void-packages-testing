@@ -4,8 +4,22 @@ version=0.7.2
 revision=1
 build_style=cmake
 configure_args=" --no-warn-unused-cli -DCMAKE_BUILD_TYPE=Release"
-hostmakedepends="cmake pkgconf"
-makedepends="hyprutils hyprwayland-scanner MesaLib-devel libseat-devel libinput-devel wayland-devel wayland-protocols pixman-devel libdisplay-info-devel hwids"
+hostmakedepends="cmake pkg-config"
+makedepends="
+	hwids
+	hyprutils-devel
+	hyprwayland-scanner
+	libdisplay-info-devel
+	libdrm-devel
+	libgbm-devel
+	libglvnd-devel
+	libinput-devel
+	libseat-devel
+	libudev-devel
+	pixman-devel
+	wayland-devel
+	wayland-protocols
+"
 short_desc="Aquamarine is a very light linux rendering backend library"
 maintainer="hesam-init <hesam.init@gmail.com>"
 license="LGPL-3.0-only"
@@ -30,4 +44,14 @@ pre_configure() {
 
       configure_args+=" -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CXX -DCMAKE_CXX_STANDARD=23 -DCMAKE_CXX_FLAGS=-stdlib=libc++"
    fi
+}
+
+aquamarine-devel_package() {
+   depends="aquamarine-${version}_${revision}"
+   short_desc+=" - development files"
+   pkg_install() {
+      vmove usr/include
+      vmove usr/lib/*.so
+      vmove usr/lib/pkgconfig
+   }
 }

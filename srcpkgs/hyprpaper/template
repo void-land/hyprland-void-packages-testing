@@ -2,7 +2,7 @@
 pkgname=hyprpaper
 version=0.7.1
 revision=1
-hostmakedepends="pkgconf cmake wayland-devel hyprutils hyprwayland-scanner"
+hostmakedepends="pkg-config cmake wayland-devel hyprutils hyprwayland-scanner"
 makedepends="
 	pango-devel
 	cairo-devel

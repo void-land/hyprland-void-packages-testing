@@ -20,7 +20,7 @@ hostmakedepends="
 	make
 	meson
 	ninja
-	pkgconf
+	pkg-config
 	wayland-devel
 	hyprgraphics
 "

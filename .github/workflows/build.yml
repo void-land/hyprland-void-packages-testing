@@ -69,10 +69,10 @@ jobs:
         run: |
           ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} libtoml++
 
-      # - name: build packages
-      #   working-directory: void-packages
-      #   run: |
-      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprcursor
+      - name: build packages
+        working-directory: void-packages
+        run: |
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} aquamarine
 
       - name: show built packages
         working-directory: void-packages/hostdir/binpkgs/
