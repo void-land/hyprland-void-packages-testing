@@ -72,6 +72,7 @@ jobs:
       - name: build packages
         working-directory: void-packages
         run: |
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprlang
           ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprcursor
 
       - name: show built packages
