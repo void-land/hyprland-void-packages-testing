@@ -32,23 +32,12 @@ pre_configure() {
    fi
 }
 
-# do_configure() {
-#    _setup_clang
-
-#    cmake --no-warn-unused-cli \
-#       -DCMAKE_BUILD_TYPE=Release \
-#       -DCMAKE_INSTALL_PREFIX=/usr \
-#       -DCMAKE_C_COMPILER=clang \
-#       -DCMAKE_CXX_COMPILER=clang++ \
-#       -DCMAKE_CXX_STANDARD=23 \
-#       -DCMAKE_CXX_FLAGS="-stdlib=libc++" \
-#       -S . -B ./build
-# }
-
-# do_build() {
-#    cmake --build ./build --config Release --target $pkgname
-# }
-
-# do_install() {
-#    DESTDIR="$DESTDIR" cmake --install build
-# }
+hyprlang-devel_package() {
+   depends="hyprlang-${version}_${revision}"
+   short_desc+=" - development files"
+   pkg_install() {
+      vmove usr/include
+      vmove usr/lib/*.so
+      vmove usr/lib/pkgconfig
+   }
+}

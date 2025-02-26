@@ -3,9 +3,9 @@ pkgname=hyprcursor
 version=0.1.10
 revision=1
 build_style=cmake
-# configure_args=" --no-warn-unused-cli -DCMAKE_BUILD_TYPE=Release"
-hostmakedepends="pkgconf cairo-devel"
-makedepends="hyprlang librsvg-devel libzip-devel tomlplusplus"
+configure_args=" --no-warn-unused-cli -DCMAKE_BUILD_TYPE=Release"
+hostmakedepends="pkg-config"
+makedepends="hyprlang cairo-devel librsvg-devel libzip-devel tomlplusplus"
 short_desc="Hyprland cursor format, library and utilities"
 maintainer="hesam-init <hesam.init@gmail.com>"
 license="BSD-3-Clause"

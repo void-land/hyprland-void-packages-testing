@@ -1,0 +1,51 @@
+# Template file for 'libtoml++'.
+pkgname=libtoml++
+version=3.4.0
+revision=1
+build_style=meson
+hostmakedepends="pkg-config cmake"
+short_desc="Header-only TOML config file parser and serializer"
+maintainer="Elvyria"
+license="MIT"
+homepage="https://marzer.github.io/tomlplusplus"
+distfiles="https://github.com/marzer/tomlplusplus/archive/refs/tags/v${version}.tar.gz"
+checksum=8517f65938a4faae9ccf8ebb36631a38c1cadfb5efa85d9a72e15b9e97d25155
+
+build_options="clang"
+build_options_default=""
+desc_option_clang="Use clang to build"
+
+if [ "$build_option_clang" ]; then
+	hostmakedepends+=" clang19"
+fi
+
+pre_configure() {
+	export CXX_LD=lld
+
+	if [ "$build_option_clang" ]; then
+		export CC=clang
+		export CXX=clang++
+		export CXXFLAGS="-Wno-deprecated-literal-operator \
+          -Wno-switch-default \
+          -Wno-unsafe-buffer-usage \
+          -Wno-error=switch-default \
+          -Wno-error=unsafe-buffer-usage"
+
+		configure_args+=" --buildtype=release -Ddevel=true -Db_lto=false"
+	fi
+}
+
+post_install() {
+	vlicense LICENSE
+}
+
+libtoml++-devel_package() {
+	depends="libtoml++-${version}_${revision}"
+	short_desc+=" - C++ development files"
+	pkg_install() {
+		vmove usr/include
+		vmove "usr/lib/*.so"
+		vmove usr/lib/cmake
+		vmove usr/lib/pkgconfig
+	}
+}
