@@ -25,12 +25,11 @@ pre_configure() {
 	if [ "$build_option_clang" ]; then
 		export CC=clang
 		export CXX=clang++
-		export CXXFLAGS="-stdlib=libc++ -Wno-deprecated-literal-operator \
+		export CXXFLAGS=" -Wno-deprecated-literal-operator \
           -Wno-switch-default \
           -Wno-unsafe-buffer-usage \
           -Wno-error=switch-default \
           -Wno-error=unsafe-buffer-usage"
-		export LDFLAGS="-stdlib=libc++"
 
 		configure_args+=" --buildtype=release -Ddevel=true -Db_lto=false -Dcpp_std=c++23 -Dcpp_stdlib=libc++"
 	fi
