@@ -1,10 +1,9 @@
 name: "Build Hyprland x86_64 Glibc"
 
 on:
-  # push:
-  #   branches:
-      # - test
-      # - main
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 env:
@@ -68,45 +67,9 @@ jobs:
           common/travis/prepare.sh &&
           common/travis/fetch-xtools.sh
 
-      - name: Build Swayosd
-        run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg swayosd)
-
-      - name: Build tomlplusplus
-        run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg tomlplusplus)
-
-      # - name: Build sdbus-cpp
-      #   run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg sdbus-cpp)
-
       - name: Build hyprutils
-        run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg hyprutils)
-
-      - name: Build hyprlang
-        run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg hyprlang)
-
-      - name: Build hyprland
-        run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg hyprland)
-
-      - name: Build hyprland-protocols
-        run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg hyprland-protocols)
-
-      - name: Build xdg-desktop-portal-hyprland
-        run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg xdg-desktop-portal-hyprland)
-
-      - name: Build hyprcursor
         run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg hyprcursor)
-
-      - name: Build hyprwayland-scanner
-        run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg hyprwayland-scanner)
-
-      - name: Build hypridle
-        run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg hypridle)
-
-      - name: Build hyprlock
-        run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg hyprlock)
-
-      - name: Build hyprpaper
-        run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg hyprpaper)
-
+        
       - name: Copy relevant packages to new directory to be packaged
         run: |
           mkdir ~/packages
