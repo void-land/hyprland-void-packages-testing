@@ -17,14 +17,15 @@ hostmakedepends="
 	wayland-devel
 	hyprgraphics
 	hyprwayland-scanner
+	libtoml++
 "
 makedepends="
 	glaze
+	libtoml++-devel
 	aquamarine-devel
 	hyprutils-devel
 	cairo-devel
 	hyprlang-devel
-	libtoml++-devel
 	hyprcursor-devel
 	hwids
 	libdisplay-info-devel
