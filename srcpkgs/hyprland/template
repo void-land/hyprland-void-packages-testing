@@ -97,12 +97,3 @@ post_install() {
 	# install -Dm0644 protocols/*.h* ${DESTDIR}/usr/include/hyprland/protocols
 	# vinstall build/hyprland.pc 644 usr/share/pkgconfig
 }
-
-# hyprland-devel_package() {
-# 	depends="${sourcepkg}>=${version}_${revision} ${hstmkdeps} ${makedepends}"
-# 	short_desc="Dynamic tiling Wayland compositor - development files"
-# 	pkg_install() {
-# 		vmove usr/include
-# 		vmove usr/share/pkgconfig
-# 	}
-# }
