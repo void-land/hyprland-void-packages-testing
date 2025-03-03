@@ -1,9 +1,9 @@
 name: Build and Release Hyprland Packages
 
 on:
-  # push:
-  #   branches:
-  #     - main
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -67,7 +67,7 @@ jobs:
       - name: build tomlplusplus
         working-directory: void-packages
         run: |
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} libtoml++
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} swayosd
 
       - name: build packages
         working-directory: void-packages
