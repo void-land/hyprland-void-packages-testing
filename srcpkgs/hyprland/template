@@ -58,7 +58,7 @@ license="BSD-3-Clause"
 homepage="https://hyprland.org/"
 changelog="https://github.com/hyprwm/Hyprland/releases"
 distfiles="https://github.com/hyprwm/Hyprland/releases/download/v${version}/source-v${version}.tar.gz"
-checksum="45176957b935c0bcb16fd9ec0944c35911d26f042bd8e64642aa41152ddea4e8"
+checksum="8c67c9e5d45317122925642e5ef49e9a46f9fe4922750ff3f02dba09fa2acb37"
 
 build_options="clang"
 build_options_default="clang"
