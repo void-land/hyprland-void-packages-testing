@@ -16,10 +16,8 @@ distfiles="https://github.com/ErikReider/SwayOSD/archive/refs/tags/v${version}.t
 checksum="5a07607643dc49d19604842f2c2f777f6148981147c425c281b0634254438a0b"
 
 post_install() {
-   vbin /usr/bin/swayosd-client
-   vbin /usr/bin/swayosd-server
-   vbin /usr/bin/swayosd-libinput-backend
    vsv swayosd-libinput-backend
+
    vinstall /usr/share/dbus-1/system.d/org.erikreider.swayosd.conf 644 /usr/share/dbus-1/system.d
    vinstall /usr/share/dbus-1/system-services/org.erikreider.swayosd.service 644 /usr/share/dbus-1/system-services
    vinstall /usr/share/polkit-1/actions/org.erikreider.swayosd.policy 644 /usr/share/polkit-1/actions
