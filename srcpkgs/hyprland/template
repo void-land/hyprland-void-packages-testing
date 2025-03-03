@@ -1,14 +1,8 @@
 # Template file for 'hyprland'
 pkgname=hyprland
 version=0.47.0
-revision=2
+revision=1
 build_style=cmake
-configure_args=" --no-warn-unused-cli \
-	-DCMAKE_BUILD_TYPE:STRING=Release \
-	-DCMAKE_INSTALL_PREFIX:PATH=/usr \
-	-DNO_SYSTEMD:STRING=true \
-	-G Ninja
-"
 configure_args=" --no-warn-unused-cli -DCMAKE_BUILD_TYPE=Release -DNO_SYSTEMD:STRING=true"
 hostmakedepends="
 	cmake
