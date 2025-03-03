@@ -17,11 +17,4 @@ checksum="5a07607643dc49d19604842f2c2f777f6148981147c425c281b0634254438a0b"
 
 post_install() {
    vsv swayosd-libinput-backend
-
-   vinstall /usr/share/dbus-1/system.d/org.erikreider.swayosd.conf 644 /usr/share/dbus-1/system.d
-   vinstall /usr/share/dbus-1/system-services/org.erikreider.swayosd.service 644 /usr/share/dbus-1/system-services
-   vinstall /usr/share/polkit-1/actions/org.erikreider.swayosd.policy 644 /usr/share/polkit-1/actions
-   vinstall /usr/share/polkit-1/rules.d/org.erikreider.swayosd.rules 644 /usr/share/polkit-1/rules.d
-   vinstall /usr/lib/udev/rules.d/99-swayosd.rules 644 /usr/lib/udev/rules.d
-   vinstall /etc/xdg/swayosd/style.css 644 /etc/xdg/swayosd
 }
