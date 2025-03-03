@@ -25,9 +25,10 @@ pre_configure() {
 	if [ "$build_option_clang" ]; then
 		export CC=clang
 		export CXX=clang++
-		# export CXX_LD=lld
+		export LDFLAGS="-stdlib=libc++"
+		export CXXFLAGS="-stdlib=libc++ -Wno-deprecated-literal-operator -Wno-switch-default -Wno-unsafe-buffer-usage -Wno-error=switch-default -Wno-error=unsafe-buffer-usage"
 
-		configure_args+=" -Dcpp_args='-stdlib=libc++ -Wno-deprecated-literal-operator -Wno-switch-default -Wno-unsafe-buffer-usage -Wno-error=switch-default -Wno-error=unsafe-buffer-usage' -Dcpp_link_args='-stdlib=libc++'"
+		# configure_args+=" -Dcpp_args='-stdlib=libc++ -Wno-deprecated-literal-operator -Wno-switch-default -Wno-unsafe-buffer-usage -Wno-error=switch-default -Wno-error=unsafe-buffer-usage' -Dcpp_link_args='-stdlib=libc++'"
 	fi
 }
 
