@@ -1,24 +1,10 @@
 # Template file for 'hyprland'
 pkgname=hyprland
-version=0.47.0
+version=0.47.2
 revision=1
 build_style=cmake
 configure_args=" --no-warn-unused-cli -DCMAKE_BUILD_TYPE=Release -DNO_SYSTEMD:STRING=true"
-hostmakedepends="
-	cmake
-	cpio
-	gcc
-	glslang
-	jq
-	make
-	meson
-	ninja
-	pkg-config
-	wayland-devel
-	hyprgraphics
-	hyprwayland-scanner
-	libtoml++
-"
+hostmakedepends="autoconf cmake git cpio glslang jq make meson ninja pkg-config wayland-devel hyprgraphics hyprwayland-scanner libtoml++"
 makedepends="
 	glaze
 	libtoml++-devel
@@ -41,12 +27,30 @@ makedepends="
 	pango-devel
 	wayland-devel
 	wayland-protocols
-	xcb-util-errors-devel
-	xcb-util-renderutil-devel
-	xcb-util-wm-devel
 	xorg-server-xwayland
 	udis86-devel
 	re2-devel
+	xcb-util-errors-devel
+	xcb-util-renderutil-devel
+	xcb-util-wm-devel
+	xcb-util-image-devel
+	xorg-server-xwayland
+"
+depends="
+	glslang
+	hyprcursor>=0.1.9
+	hyprlang>=0.5.2
+	libliftoff
+	libxcb
+	libXfixes
+	polkit
+	vulkan-loader
+	Vulkan-ValidationLayers
+	wayland-protocols
+	xcb-proto
+	xcb-util
+	xcb-util-keysyms
+	xorg-server-xwayland
 "
 short_desc="Dynamic tiling Wayland compositor that doesn't sacrifice on its looks"
 maintainer="hesam-init <hesam.init@gmail.com>"
@@ -81,26 +85,24 @@ pre_configure() {
 }
 
 post_install() {
-	# license
 	vlicense LICENSE
 
-	# headers
-	vmkdir usr/include/hyprland
-	vmkdir usr/include/hyprland/protocols
-	vmkdir usr/share/pkgconfig
+	# vmkdir usr/include/hyprland
+	# vmkdir usr/include/hyprland/protocols
+	# vmkdir usr/share/pkgconfig
 
-	cmake --build ./build --config Release --target generate-protocol-headers
+	# cmake --build ./build --config Release --target generate-protocol-headers
 
-	find src -name '*.h*' -print0 | cpio --quiet -0dump ${DESTDIR}/usr/include/hyprland
-	install -Dm0644 protocols/*.h* ${DESTDIR}/usr/include/hyprland/protocols
-	vinstall build/hyprland.pc 644 usr/share/pkgconfig
+	# find src -name '*.h*' -print0 | cpio --quiet -0dump ${DESTDIR}/usr/include/hyprland
+	# install -Dm0644 protocols/*.h* ${DESTDIR}/usr/include/hyprland/protocols
+	# vinstall build/hyprland.pc 644 usr/share/pkgconfig
 }
 
-hyprland-devel_package() {
-	depends="${sourcepkg}>=${version}_${revision} ${hstmkdeps} ${makedepends}"
-	short_desc="Dynamic tiling Wayland compositor - development files"
-	pkg_install() {
-		vmove usr/include
-		vmove usr/share/pkgconfig
-	}
-}
+# hyprland-devel_package() {
+# 	depends="${sourcepkg}>=${version}_${revision} ${hstmkdeps} ${makedepends}"
+# 	short_desc="Dynamic tiling Wayland compositor - development files"
+# 	pkg_install() {
+# 		vmove usr/include
+# 		vmove usr/share/pkgconfig
+# 	}
+# }
