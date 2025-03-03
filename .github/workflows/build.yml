@@ -68,7 +68,6 @@ jobs:
         working-directory: void-packages
         run: |
           ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} swayosd
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprcursor
 
       - name: show built packages
         working-directory: void-packages/hostdir/binpkgs/
