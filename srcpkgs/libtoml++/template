@@ -27,8 +27,7 @@ pre_configure() {
 		export CXX=clang++
 		# export CXX_LD=lld
 
-		configure_args+=" -Dcpp_std=c++23 -Dcpp_link_args=-stdlib=libc++"
-		configure_args+=" -Dcpp_args='-stdlib=libc++ -Wno-deprecated-literal-operator -Wno-switch-default -Wno-unsafe-buffer-usage -Wno-error=switch-default -Wno-error=unsafe-buffer-usage'"
+		configure_args+=" -Dcpp_args='-stdlib=libc++ -Wno-deprecated-literal-operator -Wno-switch-default -Wno-unsafe-buffer-usage -Wno-error=switch-default -Wno-error=unsafe-buffer-usage' -Dcpp_link_args='-stdlib=libc++'"
 	fi
 }
 
