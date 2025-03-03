@@ -9,7 +9,6 @@ hostmakedepends="
 	cpio
 	gcc
 	glslang
-	hyprwayland-scanner
 	jq
 	make
 	meson
@@ -17,15 +16,17 @@ hostmakedepends="
 	pkg-config
 	wayland-devel
 	hyprgraphics
+	hyprwayland-scanner
 "
 makedepends="
 	glaze
-	aquamarine
+	aquamarine-devel
+	hyprutils-devel
 	cairo-devel
+	hyprlang-devel
+	libtoml++-devel
+	hyprcursor-devel
 	hwids
-	hyprcursor
-	hyprlang
-	hyprutils
 	libdisplay-info-devel
 	libdrm-devel
 	libgbm-devel
@@ -37,7 +38,6 @@ makedepends="
 	libXcursor-devel
 	libxkbcommon-devel
 	pango-devel
-	tomlplusplus
 	wayland-devel
 	wayland-protocols
 	xcb-util-errors-devel
