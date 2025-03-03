@@ -3,6 +3,7 @@ pkgname=libtoml++
 version=3.4.0
 revision=1
 build_style=meson
+configure_args=" --buildtype=release -Ddevel=true -Db_lto=false"
 hostmakedepends="pkg-config cmake lld19"
 short_desc="Header-only TOML config file parser and serializer"
 maintainer="Elvyria"
@@ -12,7 +13,7 @@ distfiles="https://github.com/marzer/tomlplusplus/archive/refs/tags/v${version}.
 checksum=8517f65938a4faae9ccf8ebb36631a38c1cadfb5efa85d9a72e15b9e97d25155
 
 build_options="clang"
-build_options_default="clang"
+build_options_default=""
 desc_option_clang="Use clang to build"
 
 if [ "$build_option_clang" ]; then
@@ -20,18 +21,17 @@ if [ "$build_option_clang" ]; then
 fi
 
 pre_configure() {
-	export CXX_LD=lld
-
 	if [ "$build_option_clang" ]; then
 		export CC=clang
 		export CXX=clang++
+		export CXX_LD=lld
 		export CXXFLAGS=" -Wno-deprecated-literal-operator \
           -Wno-switch-default \
           -Wno-unsafe-buffer-usage \
           -Wno-error=switch-default \
           -Wno-error=unsafe-buffer-usage"
 
-		configure_args+=" --buildtype=release -Ddevel=true -Db_lto=false -Dcpp_std=c++23 -Dcpp_stdlib=libc++"
+		configure_args+=" -Dcpp_std=c++23 -Dcpp_stdlib=libc++"
 	fi
 }
 
