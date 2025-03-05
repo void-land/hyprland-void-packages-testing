@@ -7,6 +7,7 @@ configure_args=" --no-warn-unused-cli -DCMAKE_BUILD_TYPE=Release -DNO_SYSTEMD:ST
 hostmakedepends="autoconf cmake git cpio glslang jq make meson ninja pkg-config wayland-devel hyprgraphics hyprwayland-scanner libtoml++"
 makedepends="
 	glaze
+	abseil-cpp-devel
 	libtoml++-devel
 	aquamarine-devel
 	hyprutils-devel
