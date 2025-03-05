@@ -29,7 +29,7 @@ makedepends="
 	wayland-protocols
 	xorg-server-xwayland
 	udis86-devel
-	re2-devel
+	re2
 	xcb-util-errors-devel
 	xcb-util-renderutil-devel
 	xcb-util-wm-devel
