@@ -32,8 +32,8 @@ post_install() {
 }
 
 sdbus-cpp-devel_package() {
-   short_desc+=" - C++ development files"
    depends="sdbus-cpp-${version}_${revision}"
+   short_desc+=" - C++ development files"
 
    pkg_install() {
       vmove usr/lib/cmake

@@ -38,6 +38,7 @@ post_install() {
 hyprcursor-devel_package() {
 	depends="hyprcursor-${version}_${revision}"
 	short_desc+=" - development files"
+
 	pkg_install() {
 		vmove usr/include
 		vmove "usr/lib/*.so"

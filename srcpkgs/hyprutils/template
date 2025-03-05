@@ -39,6 +39,7 @@ post_install() {
 hyprutils-devel_package() {
    depends="hyprutils-${version}_${revision}"
    short_desc+=" - development files"
+
    pkg_install() {
       vmove usr/include
       vmove "usr/lib/*.so"

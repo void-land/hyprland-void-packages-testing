@@ -35,6 +35,10 @@ homepage="https://github.com/hyprwm/xdg-desktop-portal-hyprland"
 distfiles="https://github.com/hyprwm/xdg-desktop-portal-hyprland/archive/refs/tags/v${version}.tar.gz"
 checksum=cf9742c5a6df3de58abf631f01d58c5df0db417004aa8e6852f6533cc8f2938e
 
+build_options="clang"
+build_options_default="clang"
+desc_option_clang="Use clang to build"
+
 if [ "$build_option_clang" ]; then
 	hostmakedepends+=" clang19"
 	makedepends+=" libcxx libcxx-devel libcxxabi libcxxabi-devel"

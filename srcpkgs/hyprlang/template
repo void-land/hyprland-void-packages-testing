@@ -35,6 +35,7 @@ pre_configure() {
 hyprlang-devel_package() {
    depends="hyprlang-${version}_${revision}"
    short_desc+=" - development files"
+
    pkg_install() {
       vmove usr/include
       vmove "usr/lib/*.so"

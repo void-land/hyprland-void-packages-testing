@@ -14,6 +14,10 @@ homepage="https://github.com/google/re2"
 distfiles="https://github.com/google/re2/archive/${pkg_version}.tar.gz"
 checksum="eb2df807c781601c14a260a507a5bb4509be1ee626024cb45acbd57cb9d4032b"
 
+build_options="clang"
+build_options_default="clang"
+desc_option_clang="Use clang to build"
+
 if [ "$build_option_clang" ]; then
 	hostmakedepends+=" clang19"
 	makedepends+=" libcxx libcxx-devel libcxxabi libcxxabi-devel"
