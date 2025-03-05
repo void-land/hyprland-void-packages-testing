@@ -5,7 +5,7 @@ revision=1
 build_style=cmake
 hostmakedepends="pkg-config scdoc cmake git"
 makedepends="
-   basu-devel
+	basu-devel
 	hyprlang-devel
 	hyprutils-devel
 	sdbus-cpp-devel
@@ -20,7 +20,7 @@ makedepends="
 	qt6-base-devel
 "
 depends="
-   basu
+	basu
 	hyprlang
 	hyprutils
 	sdbus-cpp
