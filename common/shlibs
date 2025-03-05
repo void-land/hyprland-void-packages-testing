@@ -5,5 +5,5 @@ libaquamarine.so.6 aquamarine-0.7.2_1
 libhyprgraphics.so.0 hyprgraphics-0.1.1_1
 libhyprcursor.so.0 hyprcursor-0.1.10_1
 libtomlplusplus.so.3 libtoml++-3.4.0_1
-libsdbus-c++.so.1 sdbus-cpp-1.5.0_1
-libre2.so.11 re2-2024-07-02_1
+libsdbus-c++.so.2 sdbus-cpp-2.1.0_1
+libre2.so.11 re2-2024.07.02_1
