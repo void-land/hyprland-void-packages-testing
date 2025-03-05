@@ -1,16 +1,21 @@
-# Template file for 'libsdbus-cpp'.
+# Template file for 'sdbus-cpp'.
 pkgname=sdbus-cpp
 version=2.1.0
 revision=1
 build_style=cmake
 hostmakedepends="pkg-config"
 makedepends="basu-devel"
+depends="basu"
 short_desc="High-level C++ D-Bus library for Linux designed to provide easy-to-use yet powerful API in modern C++"
 maintainer="hesam-init <hesam.init@gmail.com>"
 license="LGPL-2.1"
 homepage="https://github.com/Kistler-Group/sdbus-cpp"
 distfiles="https://github.com/Kistler-Group/sdbus-cpp/archive/refs/tags/v${version}.tar.gz"
 checksum="6025e5dc6cddd532ff960d14e68ced5f42a1916b23a73fea6bcb437f06992eaf"
+
+build_options="clang"
+build_options_default="clang"
+desc_option_clang="Use clang to build"
 
 if [ "$build_option_clang" ]; then
    hostmakedepends+=" clang19"

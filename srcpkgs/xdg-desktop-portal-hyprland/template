@@ -5,6 +5,7 @@ revision=1
 build_style=cmake
 hostmakedepends="pkg-config wayland-devel scdoc cmake git"
 makedepends="
+   basu-devel
 	hyprlang-devel
 	hyprutils-devel
 	sdbus-cpp-devel
@@ -19,6 +20,7 @@ makedepends="
 	qt6-base-devel
 "
 depends="
+   basu
 	hyprlang
 	hyprutils
 	sdbus-cpp
