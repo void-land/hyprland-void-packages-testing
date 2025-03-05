@@ -9,6 +9,7 @@ makedepends="
 	hyprutils-devel
 	sdbus-cpp-devel
 	hyprland-protocols
+	hyprwayland-scanner
 	wayland-devel
 	wayland-protocols
 	pipewire-devel
@@ -16,17 +17,16 @@ makedepends="
 	libdrm-devel
 	elogind-devel
 	qt6-base-devel
-	hyprwayland-scanner
 "
 depends="
+	hyprlang
+	hyprutils
+	sdbus-cpp
+	hyprwayland-scanner
 	xdg-desktop-portal
 	pipewire
 	qt6-base
 	qt6-wayland
-	hyprlang
-	hyprutils
-	hyprwayland-scanner
-	sdbus-cpp
 "
 short_desc="Backend of xdg-desktop-portal for Hyprland"
 maintainer="hesam-init <hesam.init@gmail.com>"
