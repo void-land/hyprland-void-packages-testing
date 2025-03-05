@@ -7,8 +7,9 @@ hostmakedepends="pkg-config wayland-devel scdoc cmake git"
 makedepends="
 	hyprlang-devel
 	hyprutils-devel
-	wayland-devel
+	sdbus-cpp-devel
 	hyprland-protocols
+	wayland-devel
 	wayland-protocols
 	pipewire-devel
 	libgbm-devel
@@ -16,7 +17,6 @@ makedepends="
 	elogind-devel
 	qt6-base-devel
 	hyprwayland-scanner
-	sdbus-cpp
 "
 depends="
 	xdg-desktop-portal
