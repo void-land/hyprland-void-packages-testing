@@ -4,9 +4,9 @@ version=2024.07.02
 pkg_version="${version//./-}"
 revision=1
 build_style=cmake
-configure_args=" -DBUILD_SHARED_LIBS=ON"
+configure_args=" -DBUILD_SHARED_LIBS=ON -DRE2_USE_ICU=ON"
 hostmakedepends="pkg-config"
-makedepends="abseil-cpp-devel"
+makedepends="abseil-cpp-devel icu-devel"
 short_desc="Efficient, principled regular expression library"
 maintainer="Orphaned <orphan@voidlinux.org>"
 license="BSD-3-Clause"
