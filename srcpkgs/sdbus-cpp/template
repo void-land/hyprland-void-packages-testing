@@ -1,15 +1,44 @@
-# Template file for 'sdbus-cpp'
+# Template file for 'libsdbus-cpp'.
 pkgname=sdbus-cpp
-version=1.5.0
+version=2.1.0
 revision=1
 build_style=cmake
-hostmakedepends="cmake meson ninja pkg-config git m4 rsync gperf"
-makedepends="libmount-devel libcap-devel libelogind elogind-devel elogind"
-depends="libmount libcap libelogind elogind-devel elogind"
-short_desc="High-level C++ D-Bus library to provide API in modern C++"
+hostmakedepends="pkg-config"
+makedepends="basu-devel"
+short_desc="High-level C++ D-Bus library for Linux designed to provide easy-to-use yet powerful API in modern C++"
 maintainer="hesam-init <hesam.init@gmail.com>"
-license="LGPL-2.1-only"
+license="LGPL-2.1"
 homepage="https://github.com/Kistler-Group/sdbus-cpp"
-changelog="https://github.com/Kistler-Group/${pkgname}/releases"
-distfiles="https://github.com/Kistler-Group/${pkgname}/archive/refs/tags/v${version}.tar.gz"
-checksum=577986929f911320fb9ef6a3e2badd464dc38411ebc25d2966f5cb85c39f0897
+distfiles="https://github.com/Kistler-Group/sdbus-cpp/archive/refs/tags/v${version}.tar.gz"
+checksum="577986929f911320fb9ef6a3e2badd464dc38411ebc25d2966f5cb85c39f0897"
+
+if [ "$build_option_clang" ]; then
+   hostmakedepends+=" clang19"
+   makedepends+=" libcxx libcxx-devel libcxxabi libcxxabi-devel"
+fi
+
+pre_configure() {
+   if [ "$build_option_clang" ]; then
+      export CC=clang
+      export CXX=clang++
+
+      configure_args+=" -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CXX -DCMAKE_CXX_STANDARD=23 -DCMAKE_CXX_FLAGS=-stdlib=libc++"
+   fi
+}
+
+post_install() {
+   vlicense COPYING
+   vlicense COPYING-LGPL-Exception
+}
+
+sdbus-cpp-devel_package() {
+   short_desc+=" - C++ development files"
+   depends="sdbus-cpp-${version}_${revision}"
+
+   pkg_install() {
+      vmove usr/lib/cmake
+      vmove usr/lib/pkgconfig
+      vmove usr/include
+      vmove "usr/lib/*.so"
+   }
+}
