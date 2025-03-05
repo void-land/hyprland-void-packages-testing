@@ -7,6 +7,7 @@ Welcome to the repository for building and installing [Hyprland](https://github.
 This repository provides Void Linux packages, including:
 
 - aquamarine
+-
 - aquamarine-devel
 - hyprland
 - hyprland-protocols
