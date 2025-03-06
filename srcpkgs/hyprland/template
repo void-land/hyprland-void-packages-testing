@@ -58,6 +58,7 @@ depends="
 	xcb-util
 	xcb-util-keysyms
 	xorg-server-xwayland
+	re2
 "
 short_desc="Dynamic tiling Wayland compositor that doesn't sacrifice on its looks"
 maintainer="hesam-init <hesam.init@gmail.com>"
