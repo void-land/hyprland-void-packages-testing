@@ -28,9 +28,15 @@ changelog="https://github.com/hyprwm/aquamarine/releases"
 distfiles="https://github.com/hyprwm/aquamarine/archive/refs/tags/v${version}.tar.gz"
 checksum="822ce38345bc4c1b95966c79ee72ff18d753aa923c83e9aa64e9d82eebf55a38"
 
-build_options="clang"
-build_options_default="clang"
+build_options="clang gcc"
+build_options_default="gcc"
 desc_option_clang="Use clang to build"
+desc_option_gcc="Use gcc to build"
+
+if [ "$build_option_gcc" ]; then
+   hostmakedepends+=" gcc"
+   makedepends+=" libgcc-devel fmt-devel"
+fi
 
 if [ "$build_option_clang" ]; then
    hostmakedepends+=" clang19"
