@@ -6,9 +6,9 @@ build_style=cmake
 configure_args=" --no-warn-unused-cli -DCMAKE_BUILD_TYPE=Release"
 hostmakedepends="cmake pkg-config"
 makedepends="
-	hwids
-	hyprutils-devel
 	hyprwayland-scanner
+	hyprutils-devel
+	hwids
 	libdisplay-info-devel
 	libdrm-devel
 	libgbm-devel
