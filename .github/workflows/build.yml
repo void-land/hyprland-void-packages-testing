@@ -93,7 +93,7 @@ jobs:
           ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprland-protocols
           ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprpaper
           ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprlock
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hypridle
+          # ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hypridle
           ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprland
 
       - name: show built packages
