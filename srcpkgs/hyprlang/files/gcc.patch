@@ -1,0 +1,71 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 4ec92f4..c8b50f9 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -37,6 +37,7 @@ add_compile_options(
+ set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
+ 
+ find_package(PkgConfig REQUIRED)
++find_package(fmt REQUIRED)
+ pkg_check_modules(deps REQUIRED IMPORTED_TARGET hyprutils>=0.1.1)
+ 
+ file(GLOB_RECURSE SRCFILES CONFIGURE_DEPENDS "src/*.cpp" "include/hyprlang.hpp")
+@@ -52,7 +53,7 @@ set_target_properties(
+              SOVERSION 2
+              PUBLIC_HEADER include/hyprlang.hpp)
+ 
+-target_link_libraries(hyprlang PkgConfig::deps)
++target_link_libraries(hyprlang PkgConfig::deps fmt::fmt)
+ 
+ add_library(hypr::hyprlang ALIAS hyprlang)
+ install(TARGETS hyprlang)
+diff --git a/include/hyprlang.hpp b/include/hyprlang.hpp
+index 547fcb8..b59872b 100644
+--- a/include/hyprlang.hpp
++++ b/include/hyprlang.hpp
+@@ -8,8 +8,8 @@
+ #include <string>
+ #include <ostream>
+ #include <vector>
+-#include <print>
+ #include <cstdlib>
++#include <fmt/core.h>
+ 
+ class CConfigImpl;
+ struct SConfigDefaultValue;
+@@ -467,7 +467,7 @@ namespace Hyprlang {
+             const auto VAL = pConfig->getConfigValuePtr(val);
+ 
+             if (!VAL) {
+-                std::println("CSimpleConfigValue: value not found");
++                fmt::print("CSimpleConfigValue: value not found");
+                 abort();
+             }
+ 
+@@ -484,7 +484,7 @@ namespace Hyprlang {
+             const bool CUSTOMEX = (typeid(T) == typeid(Hyprlang::CUSTOMTYPE) && (TYPE == typeid(Hyprlang::CUSTOMTYPE*) || TYPE == typeid(void*) /* dunno why it does this? */));
+ 
+             if (typeid(T) != TYPE && !STRINGEX && !CUSTOMEX) {
+-                std::println("CSimpleConfigValue: Mismatched type in CConfigValue<T>, got {} but has {}", typeid(T).name(), TYPE.name());
++                fmt::print("CSimpleConfigValue: Mismatched type in CConfigValue<T>, got {} but has {}", typeid(T).name(), TYPE.name());
+                 abort();
+             }
+ #endif
+@@ -504,7 +504,7 @@ namespace Hyprlang {
+ 
+     template <>
+     inline std::string* CSimpleConfigValue<std::string>::ptr() const {
+-        std::print("Impossible to implement ptr() of CConfigValue<std::string>");
++        fmt::print("Impossible to implement ptr() of CConfigValue<std::string>");
+         abort();
+         return nullptr;
+     }
+@@ -531,7 +531,7 @@ namespace Hyprlang {
+ 
+     template <>
+     inline Hyprlang::CUSTOMTYPE CSimpleConfigValue<Hyprlang::CUSTOMTYPE>::operator*() const {
+-        std::print("Impossible to implement operator* of CConfigValue<Hyprlang::CUSTOMTYPE>, use ptr()");
++        fmt::print("Impossible to implement operator* of CConfigValue<Hyprlang::CUSTOMTYPE>, use ptr()");
+         abort();
+         return *ptr();
+     }
