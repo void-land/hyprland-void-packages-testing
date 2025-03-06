@@ -87,7 +87,7 @@ jobs:
         run: |
           ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprutils
           ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprlang
-          # ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprgraphics
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprgraphics
           # ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprwayland-scanner
           # ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprpaper
           # ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprlock
