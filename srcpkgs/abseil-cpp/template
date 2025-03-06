@@ -1,10 +1,11 @@
 # Template file for 'abseil-cpp'
 pkgname=abseil-cpp
 version=20250127.0
+shlib_version=2401.0.0
 patch_version=0
 revision=1
 build_style=cmake
-configure_args=" -DBUILD_SHARED_LIBS=ON -DABSL_PROPAGATE_CXX_STD=ON -DABSL_SOVERSION:STRING=2401.0.0"
+configure_args=" -DBUILD_SHARED_LIBS=ON -DABSL_PROPAGATE_CXX_STD=ON"
 hostmakedepends="pkg-config"
 short_desc="Abseil common libraries"
 maintainer="hesam-init <hesam.init@gmail.com>"
