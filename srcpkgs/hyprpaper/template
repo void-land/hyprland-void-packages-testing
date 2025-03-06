@@ -42,7 +42,20 @@ if [ "$build_option_clang" ]; then
 	makedepends+=" libcxx libcxx-devel libcxxabi libcxxabi-devel"
 fi
 
+_apply_patch() {
+	local args="$1" pname="$(basename $2)"
+
+	if [ ! -f ".${pname}_done" ]; then
+		patch -N $args -i $2
+		touch .${pname}_done
+	fi
+}
+
 pre_configure() {
+	if [ "$build_option_gcc" ]; then
+		_apply_patch -p1 ${FILESDIR}/gcc.patch
+	fi
+
 	if [ "$build_option_clang" ]; then
 		export CC=clang
 		export CXX=clang++
