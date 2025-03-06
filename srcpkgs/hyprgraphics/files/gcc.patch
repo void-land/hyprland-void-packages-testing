@@ -1,5 +1,5 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 958b7c0..f58124e 100644
+index 492db50..dfa9873 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -38,6 +38,7 @@ file(GLOB_RECURSE SRCFILES CONFIGURE_DEPENDS "src/*.cpp" "include/*.hpp")
@@ -10,15 +10,22 @@ index 958b7c0..f58124e 100644
  pkg_check_modules(
    deps
    REQUIRED
-@@ -71,7 +72,7 @@ target_include_directories(
+@@ -70,13 +71,13 @@ target_include_directories(
    PRIVATE "./src")
  set_target_properties(hyprgraphics PROPERTIES VERSION ${HYPRGRAPHICS_VERSION}
                                                SOVERSION 0)
--target_link_libraries(hyprgraphics PkgConfig::deps)
-+target_link_libraries(hyprgraphics PkgConfig::deps fmt::fmt)
- if(JXL_FOUND)
-   target_link_libraries(hyprgraphics PkgConfig::JXL)
- endif()
+-target_link_libraries(hyprgraphics PkgConfig::deps ${JXL_LIBRARIES})
++target_link_libraries(hyprgraphics PkgConfig::deps fmt::fmt ${JXL_LIBRARIES})
+ 
+ # tests
+ add_custom_target(tests)
+ 
+ add_executable(hyprgraphics_image "tests/image.cpp")
+-target_link_libraries(hyprgraphics_image PRIVATE hyprgraphics PkgConfig::deps)
++target_link_libraries(hyprgraphics_image PRIVATE hyprgraphics PkgConfig::deps fmt::fmt)
+ add_test(
+   NAME "Image"
+   WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/tests
 diff --git a/tests/image.cpp b/tests/image.cpp
 index 42a1082..417126d 100644
 --- a/tests/image.cpp
