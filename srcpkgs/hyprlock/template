@@ -1,6 +1,6 @@
 # Template file for 'hyprlock'
 pkgname=hyprlock
-version=0.7.0
+version=0.4.1
 revision=1
 build_style=cmake
 configure_args=" --no-warn-unused-cli -DCMAKE_BUILD_TYPE=Release"
@@ -31,7 +31,7 @@ license="BSD-3-Clause"
 homepage="https://github.com/hyprwm/hyprlock"
 changelog="https://github.com/hyprwm/hyprlock/releases"
 distfiles="https://github.com/hyprwm/hyprlock/archive/refs/tags/v${version}.tar.gz"
-checksum="0ee8d363cfe84bbca9b32062e34926aa713b9505927117593cc595d6e1e67cbe"
+checksum="87531a43088cafcadf29115889f37f73ab4a8cb1e4347723dfe8d53fa0aaba60"
 
 build_options="clang"
 build_options_default="clang"

@@ -79,6 +79,7 @@ jobs:
           ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 libtoml++
           ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 libspng
           ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 glaze
+          ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 sdbus-cpp
 
       - name: build packages
         working-directory: void-packages
