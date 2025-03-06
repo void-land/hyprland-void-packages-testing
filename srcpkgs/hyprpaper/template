@@ -6,6 +6,7 @@ build_style=cmake
 configure_args=" --no-warn-unused-cli -DCMAKE_BUILD_TYPE=Release"
 hostmakedepends="pkg-config cmake hyprwayland-scanner"
 makedepends="
+	hyprgraphics-devel
    hyprutils-devel
  	hyprland-protocols
 	hyprlang-devel

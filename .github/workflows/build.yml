@@ -76,22 +76,22 @@ jobs:
         run: |
           ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 abseil-cpp
           ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 re2
-          ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 libtoml++
-          ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 libspng
-          ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 glaze
+          # ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 libtoml++
+          # ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 libspng
+          # ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 glaze
 
       - name: build packages
         working-directory: void-packages
         run: |
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprutils
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprwayland-scanner
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprlang
           ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprpaper
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprlock
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} aquamarine
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprgraphics
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprland-protocols
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprland
+          # ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprwayland-scanner
+          # ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprlang
+          # ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprpaper
+          # ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprlock
+          # ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} aquamarine
+          # ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprgraphics
+          # ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprland-protocols
+          # ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprland
 
       - name: show built packages
         working-directory: void-packages/hostdir/binpkgs/
