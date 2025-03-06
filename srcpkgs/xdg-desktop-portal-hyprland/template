@@ -3,14 +3,14 @@ pkgname=xdg-desktop-portal-hyprland
 version=1.3.6
 revision=1
 build_style=cmake
-hostmakedepends="pkg-config scdoc cmake git"
+hostmakedepends="cmake pkg-config git"
 makedepends="
 	basu-devel
 	hyprlang-devel
 	hyprutils-devel
-	sdbus-cpp-devel
 	hyprland-protocols
 	hyprwayland-scanner
+	sdbus-cpp-devel
 	wayland-devel
 	wayland-protocols
 	pipewire-devel
@@ -38,7 +38,7 @@ distfiles="https://github.com/hyprwm/xdg-desktop-portal-hyprland/archive/refs/ta
 checksum="cf9742c5a6df3de58abf631f01d58c5df0db417004aa8e6852f6533cc8f2938e"
 
 build_options="clang"
-build_options_default=""
+build_options_default="clang"
 desc_option_clang="Use clang to build"
 
 if [ "$build_option_clang" ]; then
