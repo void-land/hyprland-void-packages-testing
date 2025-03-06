@@ -3,18 +3,19 @@ pkgname=hyprland
 version=0.47.2
 revision=1
 build_style=cmake
-configure_args=" --no-warn-unused-cli -DCMAKE_BUILD_TYPE=Release -DNO_SYSTEMD:STRING=true"
-hostmakedepends="autoconf cmake git cpio glslang jq make meson ninja pkg-config wayland-devel hyprgraphics hyprwayland-scanner libtoml++"
+configure_args=" --no-warn-unused-cli -DCMAKE_BUILD_TYPE=Release -DNO_SYSTEMD=ON"
+hostmakedepends="cmake pkg-config autoconf git cpio glslang jq make ninja"
 makedepends="
-	glaze
-	abseil-cpp-devel
-	libtoml++-devel
-	aquamarine-devel
-	hyprutils-devel
-	cairo-devel
-	hyprlang-devel
+	hyprgraphics
 	hyprcursor-devel
+	hyprutils-devel
+	aquamarine-devel
+	hyprlang-devel
+	glaze
+	libtoml++-devel
+	abseil-cpp-devel
 	hwids
+	cairo-devel
 	libdisplay-info-devel
 	libdrm-devel
 	libgbm-devel
@@ -30,7 +31,7 @@ makedepends="
 	wayland-protocols
 	xorg-server-xwayland
 	udis86-devel
-	re2
+	re2-devel
 	xcb-util-errors-devel
 	xcb-util-renderutil-devel
 	xcb-util-wm-devel
@@ -38,8 +39,12 @@ makedepends="
 	xorg-server-xwayland
 "
 depends="
-	hyprcursor>=0.1.9
-	hyprlang>=0.5.2
+	hyprlang
+	hyprwayland-scanner
+	hyprgraphics
+	hyprutils
+	hyprcursor
+	cairo
 	glslang
 	libliftoff
 	libxcb
@@ -47,6 +52,7 @@ depends="
 	polkit
 	vulkan-loader
 	Vulkan-ValidationLayers
+	wayland
 	wayland-protocols
 	xcb-proto
 	xcb-util
@@ -61,9 +67,15 @@ changelog="https://github.com/hyprwm/Hyprland/releases"
 distfiles="https://github.com/hyprwm/Hyprland/releases/download/v${version}/source-v${version}.tar.gz"
 checksum="e7f4447c9e24149cf2fd57057410bc90cb3c4ecaa35b6ec2a60a9d44d2fb2feb"
 
-build_options="clang"
-build_options_default="clang"
+build_options="clang gcc"
+build_options_default="gcc"
 desc_option_clang="Use clang to build"
+desc_option_gcc="Use gcc to build"
+
+if [ "$build_option_gcc" ]; then
+	hostmakedepends+=" gcc"
+	makedepends+=" libgcc-devel fmt-devel"
+fi
 
 if [ "$build_option_clang" ]; then
 	hostmakedepends+=" clang19"
@@ -76,7 +88,20 @@ if [ "$XBPS_TARGET_LIBC" = "musl" ]; then
 	depends+=" libexecinfo"
 fi
 
+_apply_patch() {
+	local args="$1" pname="$(basename $2)"
+
+	if [ ! -f ".${pname}_done" ]; then
+		patch -N $args -i $2
+		touch .${pname}_done
+	fi
+}
+
 pre_configure() {
+	if [ "$build_option_gcc" ]; then
+		_apply_patch -p1 ${FILESDIR}/gcc.patch
+	fi
+
 	if [ "$build_option_clang" ]; then
 		export CC=clang
 		export CXX=clang++
@@ -87,14 +112,4 @@ pre_configure() {
 
 post_install() {
 	vlicense LICENSE
-
-	# vmkdir usr/include/hyprland
-	# vmkdir usr/include/hyprland/protocols
-	# vmkdir usr/share/pkgconfig
-
-	# cmake --build ./build --config Release --target generate-protocol-headers
-
-	# find src -name '*.h*' -print0 | cpio --quiet -0dump ${DESTDIR}/usr/include/hyprland
-	# install -Dm0644 protocols/*.h* ${DESTDIR}/usr/include/hyprland/protocols
-	# vinstall build/hyprland.pc 644 usr/share/pkgconfig
 }

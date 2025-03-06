@@ -12,9 +12,15 @@ homepage="https://marzer.github.io/tomlplusplus"
 distfiles="https://github.com/marzer/tomlplusplus/archive/refs/tags/v${version}.tar.gz"
 checksum=8517f65938a4faae9ccf8ebb36631a38c1cadfb5efa85d9a72e15b9e97d25155
 
-build_options="clang"
-build_options_default="clang"
+build_options="clang gcc"
+build_options_default="gcc"
 desc_option_clang="Use clang to build"
+desc_option_gcc="Use gcc to build"
+
+if [ "$build_option_gcc" ]; then
+	hostmakedepends+=" gcc"
+	makedepends+=" libgcc-devel fmt-devel"
+fi
 
 if [ "$build_option_clang" ]; then
 	hostmakedepends+=" clang19"
@@ -27,8 +33,6 @@ pre_configure() {
 		export CXX=clang++
 		export LDFLAGS="-stdlib=libc++"
 		export CXXFLAGS="-stdlib=libc++ -Wno-deprecated-literal-operator -Wno-switch-default -Wno-unsafe-buffer-usage -Wno-error=switch-default -Wno-error=unsafe-buffer-usage"
-
-		# configure_args+=" -Dcpp_args='-stdlib=libc++ -Wno-deprecated-literal-operator -Wno-switch-default -Wno-unsafe-buffer-usage -Wno-error=switch-default -Wno-error=unsafe-buffer-usage' -Dcpp_link_args='-stdlib=libc++'"
 	fi
 }
 

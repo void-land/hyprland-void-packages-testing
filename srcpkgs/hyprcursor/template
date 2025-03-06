@@ -4,8 +4,16 @@ version=0.1.11
 revision=1
 build_style=cmake
 configure_args=" --no-warn-unused-cli -DCMAKE_BUILD_TYPE=Release"
-hostmakedepends="pkg-config"
-makedepends="cairo-devel pango-devel harfbuzz-devel hyprlang-devel librsvg-devel libzip-devel libtoml++-devel"
+hostmakedepends="cmake pkg-config"
+makedepends="
+	hyprlang-devel
+	cairo-devel
+	pango-devel
+	harfbuzz-devel
+	librsvg-devel
+	libzip-devel
+	libtoml++-devel
+"
 short_desc="Hyprland cursor format, library and utilities"
 maintainer="hesam-init <hesam.init@gmail.com>"
 license="BSD-3-Clause"
@@ -13,9 +21,15 @@ homepage="https://github.com/hyprwm/hyprcursor"
 distfiles="https://github.com/hyprwm/hyprcursor/archive/refs/tags/v${version}.tar.gz"
 checksum="17e4576b884e6bdb463b445cffff099ad16647b826a87a67b78d38b8cad4c39e"
 
-build_options="clang"
-build_options_default="clang"
+build_options="clang gcc"
+build_options_default="gcc"
 desc_option_clang="Use clang to build"
+desc_option_gcc="Use gcc to build"
+
+if [ "$build_option_gcc" ]; then
+	hostmakedepends+=" gcc"
+	makedepends+=" libgcc-devel fmt-devel"
+fi
 
 if [ "$build_option_clang" ]; then
 	hostmakedepends+=" clang19"
