@@ -60,11 +60,11 @@ jobs:
         run: |
           ./xbps-src -m masterdir-${{ matrix.arch }} -A ${{ matrix.arch }} binary-bootstrap
 
-      - name: patch shlibs
-        working-directory: void-packages/common
-        run: |
-           # sed -i '/abseil-cpp/d' shlibs
-           sed -i '/libre2/d' shlibs
+      # - name: patch shlibs
+      #   working-directory: void-packages/common
+      #   run: |
+      #     sed -i '/abseil-cpp/d' shlibs
+      #     sed -i '/libre2/d' shlibs
 
       - name: copy shlibs
         run: |
