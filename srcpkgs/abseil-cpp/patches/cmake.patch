@@ -1,6 +1,8 @@
---- CMakeLists.txt	2025-02-03 19:20:45.000000000 +0330
-+++ CMakeLists.txt	2025-03-06 17:03:49.673070319 +0330
-@@ -24,7 +24,7 @@
+diff --git a/CMakeLists.txt.old b/CMakeLists.txt
+index 5b21ee7..6f0a4a8 100644
+--- a/CMakeLists.txt.old
++++ b/CMakeLists.txt
+@@ -24,7 +24,7 @@ if (POLICY CMP0141)
  endif (POLICY CMP0141)
  
  project(absl LANGUAGES CXX VERSION 20250127)
