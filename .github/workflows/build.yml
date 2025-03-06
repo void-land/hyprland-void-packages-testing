@@ -37,11 +37,6 @@ jobs:
           ref: master
           path: void-packages
 
-      - name: copy
-        run: |
-          cat ${{ env.REPO_NAME }}/common/shlibs >> void-packages/common/shlibs
-          cp -rv ${{ env.REPO_NAME }}/srcpkgs/* void-packages/srcpkgs
-
       - name: prepare xbps-static
         run: |
           mkdir -p /opt/xbps
@@ -65,11 +60,22 @@ jobs:
         run: |
           ./xbps-src -m masterdir-${{ matrix.arch }} -A ${{ matrix.arch }} binary-bootstrap
 
+      - name: patch shlibs
+        working-directory: void-packages/common
+        run: |
+           sed -i '/abseil-cpp/d' shlibs
+           sed -i '/libre2/d' shlibs
+
+      - name: copy shlibs
+        run: |
+          cat ${{ env.REPO_NAME }}/common/shlibs >> void-packages/common/shlibs
+          cp -rv ${{ env.REPO_NAME }}/srcpkgs/* void-packages/srcpkgs
+
       - name: build requirements
         working-directory: void-packages
         run: |
           ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 abseil-cpp
-          # ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 re2
+          ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 re2
           # ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 libtoml++
           # ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 libspng
           # ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 glaze
