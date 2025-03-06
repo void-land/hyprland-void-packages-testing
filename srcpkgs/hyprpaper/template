@@ -27,9 +27,15 @@ homepage="https://github.com/hyprwm/hyprpaper"
 distfiles="https://github.com/hyprwm/hyprpaper/archive/refs/tags/v${version}.tar.gz"
 checksum="a2375dae58d29293b942a60cd465771b2c3c85cfcac628ec4897f11e7008666f"
 
-build_options="clang"
-build_options_default="clang"
+build_options="clang gcc"
+build_options_default="gcc"
 desc_option_clang="Use clang to build"
+desc_option_gcc="Use gcc to build"
+
+if [ "$build_option_gcc" ]; then
+	hostmakedepends+=" gcc"
+	makedepends+=" libgcc-devel fmt-devel"
+fi
 
 if [ "$build_option_clang" ]; then
 	hostmakedepends+=" clang19"
