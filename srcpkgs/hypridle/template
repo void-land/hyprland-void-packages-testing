@@ -10,6 +10,7 @@ makedepends="
 	hyprlang-devel
 	hyprutils-devel
 	sdbus-cpp-devel
+	basu-devel
 	wayland-devel
 	wayland-protocols
 "
