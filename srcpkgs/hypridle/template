@@ -6,10 +6,10 @@ build_style=cmake
 configure_args=" --no-warn-unused-cli -DCMAKE_BUILD_TYPE=Release"
 hostmakedepends="cmake pkg-config"
 makedepends="
+	hyprwayland-scanner
 	hyprlang-devel
 	hyprutils-devel
-	hyprwayland-scanner
-	sdbus-cpp
+	sdbus-cpp-devel
 	wayland-devel
 	wayland-protocols
 "
