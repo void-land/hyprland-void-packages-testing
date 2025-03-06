@@ -38,9 +38,9 @@ makedepends="
 	xorg-server-xwayland
 "
 depends="
-	glslang
 	hyprcursor>=0.1.9
 	hyprlang>=0.5.2
+	glslang
 	libliftoff
 	libxcb
 	libXfixes

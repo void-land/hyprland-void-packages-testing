@@ -1,7 +1,7 @@
 # Template file for 'abseil-cpp'
 pkgname=abseil-cpp
-version=20240116.2
-patch_version=2
+version=20250127.0
+patch_version=0
 revision=1
 build_style=cmake
 configure_args=" -DBUILD_SHARED_LIBS=ON -DABSL_PROPAGATE_CXX_STD=ON"
