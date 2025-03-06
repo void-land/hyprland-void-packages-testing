@@ -1,6 +1,6 @@
 # Template file for 'abseil-cpp'
 pkgname=abseil-cpp
-version=20250127
+version=20250127.0
 patch_version=0
 revision=1
 build_style=cmake
@@ -11,7 +11,7 @@ maintainer="hesam-init <hesam.init@gmail.com>"
 license="Apache-2.0"
 homepage="https://abseil.io"
 changelog="https://github.com/abseil/abseil-cpp/releases"
-distfiles="https://github.com/abseil/abseil-cpp/archive/${version}.${patch_version}.tar.gz"
+distfiles="https://github.com/abseil/abseil-cpp/archive/${version}.tar.gz"
 checksum="16242f394245627e508ec6bb296b433c90f8d914f73b9c026fddb905e27276e8"
 
 build_options="clang"
