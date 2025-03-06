@@ -4,8 +4,18 @@ version=0.1.2
 revision=1
 build_style=cmake
 configure_args=" --no-warn-unused-cli -DCMAKE_BUILD_TYPE=Release"
-hostmakedepends="cmake pkg-config wayland-devel hyprutils hyprwayland-scanner"
-makedepends="hyprutils-devel libspng pixman-devel cairo-devel libjpeg-turbo-devel libwebp-devel file-devel libjxl-devel"
+hostmakedepends="cmake pkg-config hyprutils"
+makedepends="
+   hyprutils-devel
+   libspng 
+	libmagic
+   libjpeg-turbo-devel
+   libwebp-devel
+   libjxl-devel
+   pixman-devel
+   cairo-devel
+   file-devel
+"
 short_desc="Fast wallpaper utility for wlroots compositors with IPC controls"
 maintainer="hesam-init <hesam.init@gmail.com>"
 license="BSD-3-Clause"
@@ -29,4 +39,8 @@ pre_configure() {
 
       configure_args+=" -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CXX -DCMAKE_CXX_STANDARD=23 -DCMAKE_CXX_FLAGS=-stdlib=libc++"
    fi
+}
+
+post_install() {
+   vlicense LICENSE
 }

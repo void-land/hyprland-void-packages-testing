@@ -3,8 +3,16 @@ pkgname=hypridle
 version=0.1.2
 revision=1
 build_style=cmake
+configure_args=" --no-warn-unused-cli -DCMAKE_BUILD_TYPE=Release"
 hostmakedepends="cmake pkg-config"
-makedepends="hyprlang sdbus-cpp wayland-devel wayland-protocols"
+makedepends="
+	hyprlang-devel
+	hyprutils-devel
+	hyprwayland-scanner
+	sdbus-cpp
+	wayland-devel
+	wayland-protocols
+"
 short_desc="Hyprland's idle daemon"
 maintainer="hesam-init <hesam.init@gmail.com>"
 license="BSD-3-Clause"
@@ -12,6 +20,24 @@ homepage="https://github.com/hyprwm/hypridle"
 changelog="https://github.com/hyprwm/${pkgname}/releases"
 distfiles="https://github.com/hyprwm/hypridle/archive/refs/tags/v${version}.tar.gz"
 checksum=40ab0bc7183e880f46fcc2d24b182226a5dfd8ce7695af6c320527eccf8d7c79
+
+build_options="clang"
+build_options_default="clang"
+desc_option_clang="Use clang to build"
+
+if [ "$build_option_clang" ]; then
+	hostmakedepends+=" clang19"
+	makedepends+=" libcxx libcxx-devel libcxxabi libcxxabi-devel"
+fi
+
+pre_configure() {
+	if [ "$build_option_clang" ]; then
+		export CC=clang
+		export CXX=clang++
+
+		configure_args+=" -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CXX -DCMAKE_CXX_STANDARD=23 -DCMAKE_CXX_FLAGS=-stdlib=libc++"
+	fi
+}
 
 post_install() {
 	vlicense LICENSE
