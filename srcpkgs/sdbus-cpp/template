@@ -13,9 +13,15 @@ homepage="https://github.com/Kistler-Group/sdbus-cpp"
 distfiles="https://github.com/Kistler-Group/sdbus-cpp/archive/refs/tags/v${version}.tar.gz"
 checksum="6025e5dc6cddd532ff960d14e68ced5f42a1916b23a73fea6bcb437f06992eaf"
 
-build_options="clang"
-build_options_default="clang"
+build_options="clang gcc"
+build_options_default="gcc"
 desc_option_clang="Use clang to build"
+desc_option_gcc="Use gcc to build"
+
+if [ "$build_option_gcc" ]; then
+   hostmakedepends+=" gcc"
+   makedepends+=" libgcc-devel fmt-devel"
+fi
 
 if [ "$build_option_clang" ]; then
    hostmakedepends+=" clang19"

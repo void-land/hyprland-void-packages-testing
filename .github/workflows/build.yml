@@ -79,7 +79,7 @@ jobs:
           # ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 libtoml++
           # ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 libspng
           # ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 glaze
-          # ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 sdbus-cpp
+          ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 sdbus-cpp
           ls -la
 
       - name: build packages
@@ -92,8 +92,8 @@ jobs:
           ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} aquamarine
           ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprland-protocols
           ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprpaper
-          # ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprlock
-          # ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hypridle
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprlock
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hypridle
           # ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprland
 
       - name: show built packages
