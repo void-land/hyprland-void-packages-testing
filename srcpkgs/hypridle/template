@@ -6,10 +6,11 @@ build_style=cmake
 configure_args=" --no-warn-unused-cli -DCMAKE_BUILD_TYPE=Release"
 hostmakedepends="cmake pkg-config"
 makedepends="
+	sdbus-cpp
+	sdbus-cpp-devel
 	hyprwayland-scanner
 	hyprlang-devel
 	hyprutils-devel
-	sdbus-cpp-devel
 	basu-devel
 	wayland-devel
 	wayland-protocols
@@ -20,7 +21,7 @@ license="BSD-3-Clause"
 homepage="https://github.com/hyprwm/hypridle"
 changelog="https://github.com/hyprwm/${pkgname}/releases"
 distfiles="https://github.com/hyprwm/hypridle/archive/refs/tags/v${version}.tar.gz"
-checksum=40ab0bc7183e880f46fcc2d24b182226a5dfd8ce7695af6c320527eccf8d7c79
+checksum="40ab0bc7183e880f46fcc2d24b182226a5dfd8ce7695af6c320527eccf8d7c79"
 
 build_options="clang gcc"
 build_options_default="gcc"
@@ -47,6 +48,8 @@ _apply_patch() {
 }
 
 pre_configure() {
+	_apply_patch -p1 ${FILESDIR}/cmake.patch
+
 	if [ "$build_option_clang" ]; then
 		export CC=clang
 		export CXX=clang++
