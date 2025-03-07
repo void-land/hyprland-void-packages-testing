@@ -45,7 +45,7 @@ desc_option_gcc="Use gcc to build"
 
 if [ "$build_option_gcc" ]; then
 	hostmakedepends+=" gcc"
-	makedepends+=" glibc-devel libgcc-devel fmt-devel"
+	makedepends+=" libgcc-devel fmt-devel"
 fi
 
 if [ "$build_option_clang" ]; then
