@@ -20,10 +20,6 @@ depends="
    hyprutils
    hyprland-qt-support
    polkit-qt6
-   qt6-declarative-devel
-   qt6-tools
-   qt6-wayland
-   qt6-base
 "
 short_desc="Simple polkit authentication agent for Hyprland, written in QT/QML"
 maintainer="hesam-init <hesam.init@gmail.com>"

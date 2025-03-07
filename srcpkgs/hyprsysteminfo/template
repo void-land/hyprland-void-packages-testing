@@ -1,30 +1,31 @@
-# Template file for 'hyprland-qt-support'
-pkgname=hyprland-qt-support
-version=0.1.0
+# Template file for 'hyprsysteminfo'
+pkgname=hyprsysteminfo
+version=0.1.3
 revision=1
 build_style=cmake
-configure_args=" --no-warn-unused-cli -DCMAKE_BUILD_TYPE=Release -DINSTALL_QML_PREFIX=/lib/qt6/qml"
+configure_args=" --no-warn-unused-cli -DCMAKE_BUILD_TYPE=Release"
 hostmakedepends="cmake pkg-config"
 makedepends="
-   hyprlang-devel
+   hyprutils-devel
+   hyprland-qt-support
    qt6-wayland-devel
+   qt6-wayland-private-devel
+   qt6-base-private-devel
    qt6-declarative-devel
+   qt6-declarative-private-devel
    qt6-base-devel
    qt6-tools-devel
 "
 depends="
-   hyprlang
-   qt6-declarative
-   qt6-tools
-   qt6-wayland
-   qt6-base
+   hyprutils
+   hyprland-qt-support
 "
-short_desc="QML style provider for Hypr* QT apps"
+short_desc="A tiny qt6/qml application to display information about the running system"
 maintainer="hesam-init <hesam.init@gmail.com>"
 license="BSD-3-Clause"
-homepage="https://github.com/hyprwm/hyprland-qt-support"
-distfiles="https://github.com/hyprwm/hyprland-qt-support/archive/refs/tags/v${version}.tar.gz"
-checksum="cac1f980bd088b890097f3f999cfdf03e73ee94c53f3c92d0b3bc23baa9e7b2c"
+homepage="https://github.com/hyprwm/hyprpolkitagent"
+distfiles="https://github.com/hyprwm/hyprpolkitagent/archive/refs/tags/v${version}.tar.gz"
+checksum="359298d926e0a9ec670ff5b5100c1d08392a85126ea1d8f89f723d634fd218ce"
 
 build_options="clang gcc"
 build_options_default="gcc"
@@ -41,6 +42,15 @@ if [ "$build_option_clang" ]; then
    makedepends+=" libcxx libcxx-devel libcxxabi libcxxabi-devel"
 fi
 
+_apply_patch() {
+   local args="$1" pname="$(basename $2)"
+
+   if [ ! -f ".${pname}_done" ]; then
+      patch -N $args -i $2
+      touch .${pname}_done
+   fi
+}
+
 pre_configure() {
    if [ "$build_option_clang" ]; then
       export CC=clang
@@ -49,6 +59,7 @@ pre_configure() {
       configure_args+=" -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CXX -DCMAKE_CXX_STANDARD=23 -DCMAKE_CXX_FLAGS=-stdlib=libc++"
    fi
 }
+
 post_install() {
    vlicense LICENSE
 }
