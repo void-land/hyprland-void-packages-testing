@@ -18,6 +18,29 @@ homepage="https://github.com/hyprwm/hyprland-qt-support"
 distfiles="https://github.com/hyprwm/hyprland-qt-support/archive/refs/tags/v${version}.tar.gz"
 checksum="cac1f980bd088b890097f3f999cfdf03e73ee94c53f3c92d0b3bc23baa9e7b2c"
 
+build_options="clang gcc"
+build_options_default="gcc"
+desc_option_clang="Use clang to build"
+desc_option_gcc="Use gcc to build"
+
+if [ "$build_option_gcc" ]; then
+   hostmakedepends+=" gcc"
+   makedepends+=" libgcc-devel fmt-devel"
+fi
+
+if [ "$build_option_clang" ]; then
+   hostmakedepends+=" clang19"
+   makedepends+=" libcxx libcxx-devel libcxxabi libcxxabi-devel"
+fi
+
+pre_configure() {
+   if [ "$build_option_clang" ]; then
+      export CC=clang
+      export CXX=clang++
+
+      configure_args+=" -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CXX -DCMAKE_CXX_STANDARD=23 -DCMAKE_CXX_FLAGS=-stdlib=libc++"
+   fi
+}
 post_install() {
    vlicense LICENSE
 }
