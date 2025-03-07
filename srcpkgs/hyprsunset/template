@@ -4,14 +4,14 @@ version=0.1.0
 revision=1
 build_style=cmake
 configure_args=" --no-warn-unused-cli -DCMAKE_BUILD_TYPE=Release"
-hostmakedepends="pkg-config cmake"
+hostmakedepends="cmake pkg-config"
 makedepends="
 	hyprwayland-scanner
    hyprutils-devel
 	wayland-devel
 	wayland-protocols
 "
-short_desc="Fast wallpaper utility for wlroots compositors with IPC controls"
+short_desc="An application to enable a blue-light filter on Hyprland"
 maintainer="hesam-init <hesam.init@gmail.com>"
 license="BSD-3-Clause"
 homepage="https://github.com/hyprwm/hyprsunset"
