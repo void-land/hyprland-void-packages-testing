@@ -8,10 +8,11 @@ hostmakedepends="cmake pkg-config"
 makedepends="
 	sdbus-cpp
 	sdbus-cpp-devel
+	libelogind
+	elogind-devel
 	hyprwayland-scanner
 	hyprlang-devel
 	hyprutils-devel
-	basu-devel
 	wayland-devel
 	wayland-protocols
 "

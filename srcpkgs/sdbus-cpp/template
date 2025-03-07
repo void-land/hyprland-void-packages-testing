@@ -1,8 +1,9 @@
 # Template file for 'sdbus-cpp'.
 pkgname=sdbus-cpp
-version=2.1.0
+version=2.0.0
 revision=1
 build_style=cmake
+configure_args=" -DSDBUSCPP_BUILD_LIBSYSTEMD=ON -DSDBUSCPP_BUILD_DOCS=ON"
 hostmakedepends="cmake pkg-config"
 makedepends="libelogind elogind-devel"
 depends="elogind"
@@ -11,7 +12,7 @@ maintainer="hesam-init <hesam.init@gmail.com>"
 license="LGPL-2.1"
 homepage="https://github.com/Kistler-Group/sdbus-cpp"
 distfiles="https://github.com/Kistler-Group/sdbus-cpp/archive/refs/tags/v${version}.tar.gz"
-checksum="6025e5dc6cddd532ff960d14e68ced5f42a1916b23a73fea6bcb437f06992eaf"
+checksum="88af4569161a0d0192f0f4a94582a1af4e75722499d06984fb7f91f638f5afb3"
 
 build_options="clang gcc"
 build_options_default="gcc"
