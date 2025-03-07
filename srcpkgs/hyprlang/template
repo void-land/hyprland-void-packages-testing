@@ -6,6 +6,7 @@ build_style=cmake
 configure_args=" --no-warn-unused-cli -DCMAKE_BUILD_TYPE=Release"
 hostmakedepends="cmake pkg-config"
 makedepends="hyprutils-devel"
+depends="hyprutils"
 short_desc="Official implementation library for the hypr config language"
 maintainer="hesam-init <hesam.init@gmail.com>"
 license="LGPL-3.0-only"
