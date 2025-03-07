@@ -12,7 +12,6 @@ makedepends="
 	hyprutils-devel
 	sdbus-cpp-devel
 	elogind-devel
-	basu-devel
 	cairo-devel
 	libdrm-devel
 	libxkbcommon-devel

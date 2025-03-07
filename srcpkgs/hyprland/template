@@ -11,6 +11,7 @@ makedepends="
 	hyprutils-devel
 	aquamarine-devel
 	hyprlang-devel
+	hyprland-protocols
 	hyprwayland-scanner
 	libtoml++-devel
 	abseil-cpp-devel

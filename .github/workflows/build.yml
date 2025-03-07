@@ -74,9 +74,9 @@ jobs:
       - name: build requirements
         working-directory: void-packages
         run: |
-          ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 libtoml++
-          ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 libspng
-          ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 sdbus-cpp
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} libtoml++
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} libspng
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} sdbus-cpp
 
       - name: build packages
         working-directory: void-packages
