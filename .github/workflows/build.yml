@@ -1,9 +1,9 @@
 name: Build and Release Hyprland Packages
 
 on:
-  # push:
-  #   branches:
-  #     - main
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -11,8 +11,8 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        arch: [x86_64]
-        # arch: [x86_64, x86_64-musl]
+        # arch: [x86_64]
+        arch: [x86_64, x86_64-musl]
     runs-on: ubuntu-22.04
     env:
       XBPS_ALLOW_RESTRICTED: "yes"
@@ -44,12 +44,12 @@ jobs:
           tar xvf xbps-static-latest.x86_64-musl.tar.xz -C /opt/xbps
           rm xbps-static-latest.x86_64-musl.tar.xz
 
-      # - name: free space
-      #   run: |
-      #     sudo rm -rf /usr/share/dotnet
-      #     sudo rm -rf /usr/local/lib/android
-      #     sudo rm -rf /opt/ghc
-      #     sudo rm -rf /opt/hostedtoolcache/CodeQL
+      - name: free space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
 
       - name: set path
         run: |
@@ -74,25 +74,28 @@ jobs:
       - name: build requirements
         working-directory: void-packages
         run: |
-          # ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 libtoml++
-          # ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 libspng
-          # ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 glaze
-          # ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 sdbus-cpp
-          ls -la
+          ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 libtoml++
+          ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 libspng
+          ./xbps-src pkg -j$(nproc) -m masterdir-x86_64 sdbus-cpp
 
       - name: build packages
         working-directory: void-packages
         run: |
-          # ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hypridle
-          # ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprutils
-          # ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprlang
-          # ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprgraphics
-          # ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprwayland-scanner
-          # ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} aquamarine
-          # ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprland-protocols
-          # ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprpaper
-          # ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprlock
-          # ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprland
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprutils
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprlang
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprcursor
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprgraphics
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprwayland-scanner
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} aquamarine
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprland-protocols
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprland-qt-support
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprpolkitagent
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprsysteminfo
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprpaper
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprsunset
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprlock
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hypridle
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprland
 
       - name: show built packages
         working-directory: void-packages/hostdir/binpkgs/

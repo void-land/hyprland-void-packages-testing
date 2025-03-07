@@ -12,7 +12,6 @@ makedepends="
 	aquamarine-devel
 	hyprlang-devel
 	hyprwayland-scanner
-	glaze
 	libtoml++-devel
 	abseil-cpp-devel
 	hwids
@@ -82,6 +81,10 @@ fi
 if [ "$build_option_clang" ]; then
 	hostmakedepends+=" clang19"
 	makedepends+=" libcxx libcxx-devel libcxxabi libcxxabi-devel"
+fi
+
+if [ "$XBPS_TARGET_LIBC" = "glibc" ]; then
+	makedepends+=" glaze"
 fi
 
 if [ "$XBPS_TARGET_LIBC" = "musl" ]; then
