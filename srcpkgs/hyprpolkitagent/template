@@ -4,7 +4,7 @@ version=0.1.2
 revision=1
 build_style=cmake
 configure_args=" --no-warn-unused-cli -DCMAKE_BUILD_TYPE=Release"
-hostmakedepends="cmake pkg-conf"
+hostmakedepends="cmake pkg-config"
 makedepends="
    hyprlang-devel
    hyprutils-devel
