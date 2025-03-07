@@ -49,7 +49,7 @@ _apply_patch() {
 }
 
 pre_configure() {
-	# _apply_patch -p1 ${FILESDIR}/cmake.patch
+	_apply_patch -p1 ${FILESDIR}/systemd.patch
 
 	if [ "$build_option_clang" ]; then
 		export CC=clang
