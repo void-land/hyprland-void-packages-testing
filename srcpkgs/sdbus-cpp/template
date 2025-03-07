@@ -3,7 +3,7 @@ pkgname=sdbus-cpp
 version=2.0.0
 revision=1
 build_style=cmake
-configure_args=" -DSDBUSCPP_BUILD_LIBSYSTEMD=ON -DSDBUSCPP_BUILD_DOCS=ON"
+configure_args=" -DSDBUSCPP_BUILD_LIBSYSTEMD=OFF -DSDBUSCPP_BUILD_DOCS=ON"
 hostmakedepends="cmake pkg-config"
 makedepends="libelogind elogind-devel"
 depends="elogind"
