@@ -23,8 +23,9 @@ makedepends="
 depends="
 	hyprlang
 	hyprutils
-	sdbus-cpp
+	hyprland-protocols
 	hyprwayland-scanner
+	sdbus-cpp
 	xdg-desktop-portal
 	pipewire
 	qt6-base
