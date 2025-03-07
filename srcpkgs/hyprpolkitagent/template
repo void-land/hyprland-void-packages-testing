@@ -17,7 +17,7 @@ makedepends="
 "
 depends="
    hyprlang
-   hyprurils
+   hyprutils
    hyprland-qt-support
    polkit-qt6
    qt6-declarative-devel
