@@ -23,7 +23,6 @@ makedepends="
 	libjpeg-turbo-devel
 	libwebp-devel
 	file-devel
-	libmagic
 "
 short_desc="Hyprland's GPU-accelerated screen locking utility"
 maintainer="hesam-init <hesam.init@gmail.com>"

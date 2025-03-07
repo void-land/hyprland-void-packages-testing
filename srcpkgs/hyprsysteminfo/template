@@ -17,7 +17,6 @@ makedepends="
    qt6-tools-devel
 "
 depends="
-   hyprutils
    hyprland-qt-support
 "
 short_desc="A tiny qt6/qml application to display information about the running system"

@@ -6,7 +6,6 @@ build_style=cmake
 configure_args=" --no-warn-unused-cli -DCMAKE_BUILD_TYPE=Release"
 hostmakedepends="cmake pkg-config"
 makedepends="pugixml-devel"
-depends="pugixml"
 short_desc="Hyprland's implementation of wayland-scanner in/for C++"
 maintainer="hesam-init <hesam.init@gmail.com>"
 license="BSD-3-Clause"

@@ -16,8 +16,6 @@ makedepends="
    qt6-tools-devel
 "
 depends="
-   hyprlang
-   hyprutils
    hyprland-qt-support
    polkit-qt6
 "

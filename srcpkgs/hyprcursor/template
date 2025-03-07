@@ -6,13 +6,13 @@ build_style=cmake
 configure_args=" --no-warn-unused-cli -DCMAKE_BUILD_TYPE=Release"
 hostmakedepends="cmake pkg-config"
 makedepends="
+	libtoml++-devel
 	hyprlang-devel
 	cairo-devel
 	pango-devel
 	harfbuzz-devel
 	librsvg-devel
 	libzip-devel
-	libtoml++-devel
 "
 short_desc="Hyprland cursor format, library and utilities"
 maintainer="hesam-init <hesam.init@gmail.com>"
