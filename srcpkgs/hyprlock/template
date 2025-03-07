@@ -10,6 +10,7 @@ makedepends="
 	hyprgraphics
 	hyprlang-devel
 	hyprutils-devel
+	sdbus-cpp
 	sdbus-cpp-devel
 	basu-devel
 	cairo-devel
