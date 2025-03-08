@@ -55,6 +55,11 @@ jobs:
         run: |
           echo "/opt/xbps/usr/bin/" >> $GITHUB_PATH
 
+      - name: prepare shlibs
+        run: |
+          cat ${{ env.REPO_NAME }}/common/shlibs >> void-packages/common/shlibs
+          cp -rv ${{ env.REPO_NAME }}/srcpkgs/* void-packages/srcpkgs
+
       - name: setup binray bootstrap
         working-directory: void-packages
         run: |
@@ -65,11 +70,6 @@ jobs:
       #   run: |
       #     sed -i '/abseil-cpp/d' shlibs
       #     sed -i '/libre2/d' shlibs
-
-      - name: copy shlibs
-        run: |
-          cat ${{ env.REPO_NAME }}/common/shlibs >> void-packages/common/shlibs
-          cp -rv ${{ env.REPO_NAME }}/srcpkgs/* void-packages/srcpkgs
 
       - name: build requirements
         working-directory: void-packages
