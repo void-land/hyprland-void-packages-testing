@@ -89,6 +89,7 @@ jobs:
           ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} aquamarine
           ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprland-protocols
           ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprland-qt-support
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprland-qtutils
           ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprpolkitagent
           ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprsysteminfo
           ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprpaper

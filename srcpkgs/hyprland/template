@@ -104,6 +104,8 @@ _apply_patch() {
 }
 
 pre_configure() {
+	_apply_patch -p1 ${FILESDIR}/version.patch
+
 	if [ "$build_option_gcc" ]; then
 		_apply_patch -p1 ${FILESDIR}/gcc.patch
 	fi

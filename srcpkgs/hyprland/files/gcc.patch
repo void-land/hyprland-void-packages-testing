@@ -1040,23 +1040,3 @@ index 464ed97..81076c0 100644
          return 1;
      }
  
-diff --git a/src/version.h b/src/version.h
-index e0cbb8a..e346047 100644
---- a/src/version.h
-+++ b/src/version.h
-@@ -1,8 +1,8 @@
- #pragma once
--#define GIT_COMMIT_HASH    "882f7ad7d2bbfc7440d0ccaef93b1cdd78e8e3ff"
--#define GIT_BRANCH         ""
--#define GIT_COMMIT_MESSAGE "    version: bump to 0.47.2"
--#define GIT_COMMIT_DATE    "Sun Feb 2 00:47:17 2025"
--#define GIT_DIRTY          ""
--#define GIT_TAG            "v0.47.2"
--#define GIT_COMMITS        "5767"
-+#define GIT_COMMIT_HASH    "869e9b1edb7dd01837c541f383e17489220ca731"
-+#define GIT_BRANCH         "master"
-+#define GIT_COMMIT_MESSAGE "VoidLinux Build"
-+#define GIT_COMMIT_DATE    "Thu Mar 6 21:38:25 2025"
-+#define GIT_DIRTY          "dirty"
-+#define GIT_TAG            "0.47.0"
-+#define GIT_COMMITS        "1"
